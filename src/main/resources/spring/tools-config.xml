@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-	Application context definition for PetClinic on JPA.
+	Application context definition for JPA.
 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -18,7 +18,7 @@
 
     <!--
         Simply defining this bean will cause requests to owner names to be saved.
-        This aspect is defined in petclinic.jar's META-INF/aop.xml file.
+        This aspect is defined in calypso.jar's META-INF/aop.xml file.
         Note that we can dependency inject this bean like any other bean.
     -->
     <aop:aspectj-autoproxy>
@@ -26,7 +26,7 @@
     </aop:aspectj-autoproxy>
 
     <!-- Call monitoring aspect that monitors call count and call invocation time -->
-    <bean id="callMonitor" class="org.springframework.samples.petclinic.util.CallMonitoringAspect"/>
+    <bean id="callMonitor" class="com.calypso.util.CallMonitoringAspect"/>
 
     <!--
         Exporter that exposes the CallMonitoringAspect via JMX,

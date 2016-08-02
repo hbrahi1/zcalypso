@@ -16,7 +16,7 @@
     <import resource="datasource-config.xml"/>
 
     <context:component-scan
-            base-package="org.springframework.samples.petclinic.service"/>
+            base-package="com.calypso.service"/>
 
     <!-- Configurer that replaces ${...} placeholders with values from a properties file -->
     <!-- (in this case, JDBC-related settings for the JPA EntityManager definition below) -->
@@ -46,8 +46,8 @@
                  -->
             </property>
             <!-- gDickens: BOTH Persistence Unit and Packages to Scan are NOT compatible, persistenceUnit will win -->
-            <property name="persistenceUnitName" value="petclinic"/>
-            <property name="packagesToScan" value="org.springframework.samples.petclinic"/>
+            <property name="persistenceUnitName" value="calypso"/>
+            <property name="packagesToScan" value="com.calypso"/>
         </bean>
 
         <!-- Transaction manager for a single JPA EntityManagerFactory (alternative to JTA) -->
@@ -77,7 +77,7 @@
             <constructor-arg ref="dataSource"/>
         </bean>
 
-        <context:component-scan base-package="org.springframework.samples.petclinic.repository.jdbc"/>
+        <context:component-scan base-package="com.calypso.repository.jdbc"/>
     </beans>
 
     <beans profile="jpa">
@@ -87,10 +87,10 @@
             EntityManager will be auto-injected due to @PersistenceContext.
             PersistenceExceptions will be auto-translated due to @Repository.
         -->
-        <context:component-scan base-package="org.springframework.samples.petclinic.repository.jpa"/>
+        <context:component-scan base-package="com.calypso.repository.jpa"/>
     </beans>
 
     <beans profile="spring-data-jpa">
-        <jpa:repositories base-package="org.springframework.samples.petclinic.repository.springdatajpa"/>
+        <jpa:repositories base-package="com.calypso.repository.springdatajpa"/>
     </beans>
 </beans>

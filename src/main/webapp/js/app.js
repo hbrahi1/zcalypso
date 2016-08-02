@@ -1,9 +1,9 @@
-var app = angular.module('spring-petclinic', ['ui.router','ui.router.stateHelper','ngAnimate','ngCookies','ngResource','ngMockE2E','ngStorage']);
+var app = angular.module('calypso', ['ui.router','ui.router.stateHelper','ngAnimate','ngCookies','ngResource','ngMockE2E','ngStorage']);
 
 
 /** Start of Configurable constants **/
 app.constant('useMockData', false);
-app.constant('context', '/petclinic');
+app.constant('context', '/calypso');
 /** End of Configurable constants **/
 
 app.config(['stateHelperProvider','$urlRouterProvider','$urlMatcherFactoryProvider',function(stateHelperProvider,$urlRouterProvider,$urlMatcherFactoryProvider) {

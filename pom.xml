@@ -553,6 +553,6 @@
 		</plugins>
 	</build>
 
-	<url>demopetclinic</url>
+	<url>democalypso</url>
 	<artifactId>calypso</artifactId>
 </project>
