@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.springframework.samples</groupId>
-	<artifactId>spring-petclinic</artifactId>
+	<groupId>ca.calypso</groupId>
 	<version>1.0.0-SNAPSHOT</version>
 
-	<name>petclinic</name>
+	<name>calypso</name>
 	<packaging>war</packaging>
 
 	<properties>
@@ -380,6 +379,12 @@
 				<artifactId>spring-tx</artifactId>
 				<version>${spring-framework.version}</version>
 			</dependency>
+			<dependency>
+      <groupId>com.newrelic.agent.java</groupId>
+      <artifactId>newrelic-agent</artifactId>
+      <version>3.18.0</version>
+      <scope>provided</scope>
+    </dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -426,7 +431,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.3</version>
 				<configuration>
-					<warName>petclinic</warName>
+					<warName>zcalypso</warName>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -472,7 +477,7 @@
 				<configuration>
 					<server>tomcat-development-server</server>
 					<port>9966</port>
-					<path>/petclinic</path>
+					<path>/calypso</path>
 				</configuration>
 			</plugin><plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -495,6 +500,35 @@
                 </execution>
             </executions>
         </plugin>
+         <plugin>
+        <groupId>com.heroku.sdk</groupId>
+        <artifactId>heroku-maven-plugin</artifactId>
+        <version>1.0.3</version>
+        <configuration>
+          <includes>
+            <include>target/dependency/newrelic-agent.jar</include>
+          </includes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.6</version>
+        <executions>
+          <execution>
+            <id>copy-new-relic</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <includeGroupIds>com.newrelic.agent.java</includeGroupIds>
+              <includeArtifactIds>newrelic-agent</includeArtifactIds>
+              <stripVersion>true</stripVersion>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 			<!--plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-dependency-plugin</artifactId>
@@ -520,4 +554,5 @@
 	</build>
 
 	<url>demopetclinic</url>
+	<artifactId>calypso</artifactId>
 </project>
