@@ -36,11 +36,11 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.stereotype.Repository;
 
-import com.calypso.model.Owner;
+import com.calypso.model.BusinessPartner;
 import com.calypso.model.Pet;
 import com.calypso.model.PetType;
 import com.calypso.model.Visit;
-import com.calypso.repository.OwnerRepository;
+import com.calypso.repository.BusinessPartnerRepository;
 import com.calypso.repository.PetRepository;
 import com.calypso.repository.VisitRepository;
 import com.calypso.util.EntityUtils;
@@ -60,20 +60,20 @@ public class JdbcPetRepositoryImpl implements PetRepository {
 
     private SimpleJdbcInsert insertPet;
 
-    private OwnerRepository ownerRepository;
+    private BusinessPartnerRepository businessPartnerRepository;
 
     private VisitRepository visitRepository;
 
 
     @Autowired
-    public JdbcPetRepositoryImpl(DataSource dataSource, OwnerRepository ownerRepository, VisitRepository visitRepository) {
+    public JdbcPetRepositoryImpl(DataSource dataSource, BusinessPartnerRepository businessPartnerRepository, VisitRepository visitRepository) {
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 
         this.insertPet = new SimpleJdbcInsert(dataSource)
                 .withTableName("pets")
                 .usingGeneratedKeyColumns("id");
 
-        this.ownerRepository = ownerRepository;
+        this.businessPartnerRepository = businessPartnerRepository;
         this.visitRepository = visitRepository;
     }
 
@@ -93,14 +93,14 @@ public class JdbcPetRepositoryImpl implements PetRepository {
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("id", id);
             pet = this.namedParameterJdbcTemplate.queryForObject(
-                    "SELECT id, name, birth_date, type_id, owner_id FROM pets WHERE id=:id",
+                    "SELECT id, name, birth_date, type_id, businessPartner_id FROM pets WHERE id=:id",
                     params,
                     new JdbcPetRowMapper());
         } catch (EmptyResultDataAccessException ex) {
             throw new ObjectRetrievalFailureException(Pet.class, new Integer(id));
         }
-        Owner owner = this.ownerRepository.findById(pet.getOwnerId());
-        owner.addPet(pet);
+        BusinessPartner businessPartner = this.businessPartnerRepository.findById(pet.getBusinessPartnerId());
+        businessPartner.addPet(pet);
         pet.setType(EntityUtils.getById(findPetTypes(), PetType.class, pet.getTypeId()));
 
         List<Visit> visits = this.visitRepository.findByPetId(pet.getId());
@@ -119,7 +119,7 @@ public class JdbcPetRepositoryImpl implements PetRepository {
         } else {
             this.namedParameterJdbcTemplate.update(
                     "UPDATE pets SET name=:name, birth_date=:birth_date, type_id=:type_id, " +
-                            "owner_id=:owner_id WHERE id=:id",
+                            "businessPartner_id=:businessPartner_id WHERE id=:id",
                     createPetParameterSource(pet));
         }
     }
@@ -133,7 +133,7 @@ public class JdbcPetRepositoryImpl implements PetRepository {
                 .addValue("name", pet.getName())
                 .addValue("birth_date", pet.getBirthDate().toDate())
                 .addValue("type_id", pet.getType().getId())
-                .addValue("owner_id", pet.getOwner().getId());
+                .addValue("businessPartner_id", pet.getBusinessPartner().getId());
     }
 
 	@SuppressWarnings("unchecked")

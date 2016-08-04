@@ -320,7 +320,7 @@ AddDefaultCharset utf-8
 #
 # (3) If your web host doesn't allow the `FollowSymlinks` option,
 #     you need to comment it out or remove it, and then uncomment
-#     the `Options +SymLinksIfOwnerMatch` line (4), but be aware
+#     the `Options +SymLinksIfBusinessPartnerMatch` line (4), but be aware
 #     of the performance impact.
 #
 #     https://httpd.apache.org/docs/current/misc/perf-tuning.html#symlinks
@@ -345,7 +345,7 @@ AddDefaultCharset utf-8
     Options +FollowSymlinks
 
     # (3)
-    # Options +SymLinksIfOwnerMatch
+    # Options +SymLinksIfBusinessPartnerMatch
 
     # (4)
     # RewriteBase /

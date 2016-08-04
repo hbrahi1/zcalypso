@@ -1,7 +1,7 @@
-<!-- This partial include Add/Edit Owners and Success Modals -->
+<!-- This partial include Add/Edit BusinessPartners and Success Modals -->
 
-<!-- Add Owner Modal -->
-<div class="modal modal-owner fade" id="addOwnerModal" tabindex="-1" data-ng-controller="AddOwnerController">
+<!-- Add BusinessPartner Modal -->
+<div class="modal modal-businessPartner fade" id="addBusinessPartnerModal" tabindex="-1" data-ng-controller="AddBusinessPartnerController">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -9,8 +9,8 @@
         <div class="container">
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <h1 class="sub-header">Add An Owner</h1>
-              <em class="text-muted">Fill up pet owners basic information and contact details</em>
+              <h1 class="sub-header">Add An BusinessPartner</h1>
+              <em class="text-muted">Fill up pet businessPartners basic information and contact details</em>
             </div>
           </div>
         </div>
@@ -21,11 +21,11 @@
             <div class="col-md-4 col-md-offset-2">
               <div class="form-group">
                 <label for="firstName">First Name</label>
-                <input type="text" class="form-control" id="firstName" ng-model="owner.firstName">
+                <input type="text" class="form-control" id="firstName" ng-model="businessPartner.firstName">
               </div>
               <div class="form-group">
                 <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName" ng-model="owner.lastName">
+                <input type="text" class="form-control" id="lastName" ng-model="businessPartner.lastName">
               </div>
               <div class="form-group">
                 <label for="profileImg">Profile Photo</label>
@@ -47,15 +47,15 @@
               </div>
               <div class="form-group">
                 <label for="address">Address</label>
-                <input type="text" class="form-control" id="address" ng-model="owner.address">
+                <input type="text" class="form-control" id="address" ng-model="businessPartner.address">
               </div>
               <div class="form-group">
                 <label for="city">City</label>
-                <input type="text" class="form-control" id="city" ng-model="owner.city">
+                <input type="text" class="form-control" id="city" ng-model="businessPartner.city">
               </div>
               <div class="form-group">
                 <label for="contactNumber">Contact Number</label>
-                <input type="text" class="form-control" id="contactNumber" ng-model="owner.telephone">
+                <input type="text" class="form-control" id="contactNumber" ng-model="businessPartner.telephone">
               </div>
               <div class="form-group">
                 <label for="email">Email</label>
@@ -64,7 +64,7 @@
             </div>
             <div class="col-md-8 col-md-offset-2">
               <div class="form-group form-group-action">
-                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#addOwnerSuccessModal" data-dismiss="modal" aria-label="Close" data-ng-click="addOwner()">Add Owner</button>
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#addBusinessPartnerSuccessModal" data-dismiss="modal" aria-label="Close" data-ng-click="addBusinessPartner()">Add BusinessPartner</button>
                 <button class="btn btn-link" class="close" data-dismiss="modal" aria-label="Close">Cancel</button>
               </div>
             </div>
@@ -75,8 +75,8 @@
   </div>
 </div>
 
-<!-- Add Owner Success Modal -->
-<div class="modal modal-owner fade" id="addOwnerSuccessModal" tabindex="-1">
+<!-- Add BusinessPartner Success Modal -->
+<div class="modal modal-businessPartner fade" id="addBusinessPartnerSuccessModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -84,7 +84,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <h1 class="sub-header">Owner added successfully!</h1>
+              <h1 class="sub-header">BusinessPartner added successfully!</h1>
             </div>
           </div>
         </div>
@@ -94,11 +94,11 @@
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
               <div class="alert alert-success" role="alert">
-                Well done! You've successfully added an a new owner.
+                Well done! You've successfully added an a new businessPartner.
               </div>
               <div class="form-group form-group-action">
-                <!-- ##TODO: Should link to the proper owner details page -->
-                <a href="owner_details.html" class="btn btn-primary">View owner's details</a>
+                <!-- ##TODO: Should link to the proper businessPartner details page -->
+                <a href="businessPartner_details.html" class="btn btn-primary">View businessPartner's details</a>
                 <button class="btn btn-link" data-dismiss="modal" aria-label="Close">Close</button>
               </div>
             </div>
@@ -109,8 +109,8 @@
   </div>
 </div>
 
-<!-- Edit Owner Modal -->
-<div class="modal modal-owner fade" id="editOwnerModal" tabindex="-1">
+<!-- Edit BusinessPartner Modal -->
+<div class="modal modal-businessPartner fade" id="editBusinessPartnerModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -118,8 +118,8 @@
         <div class="container">
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <h1 class="sub-header">Edit Owner</h1>
-              <em class="text-muted">Fill up pet owners basic information and contact details</em>
+              <h1 class="sub-header">Edit BusinessPartner</h1>
+              <em class="text-muted">Fill up pet businessPartners basic information and contact details</em>
             </div>
           </div>
         </div>
@@ -130,11 +130,11 @@
             <div class="col-md-4 col-md-offset-2">
               <div class="form-group">
                 <label for="firstName">First Name</label>
-                <input type="text" class="form-control" id="firstName" ng-model="currentOwner.firstName">
+                <input type="text" class="form-control" id="firstName" ng-model="currentBusinessPartner.firstName">
               </div>
               <div class="form-group">
                 <label for="lastName">Last Name</label>
-                <input type="text" class="form-control" id="lastName" ng-model="currentOwner.lastName">
+                <input type="text" class="form-control" id="lastName" ng-model="currentBusinessPartner.lastName">
               </div>
               <div class="form-group">
                 <label for="profileImg">Profile Photo</label>
@@ -156,15 +156,15 @@
               </div>
               <div class="form-group">
                 <label for="address">Address</label>
-                <input type="text" class="form-control" id="address" ng-model="currentOwner.address">
+                <input type="text" class="form-control" id="address" ng-model="currentBusinessPartner.address">
               </div>
               <div class="form-group">
                 <label for="city">City</label>
-                <input type="text" class="form-control" id="city" ng-model="currentOwner.city">
+                <input type="text" class="form-control" id="city" ng-model="currentBusinessPartner.city">
               </div>
               <div class="form-group">
                 <label for="contactNumber">Contact Number</label>
-                <input type="text" class="form-control" id="contactNumber" ng-model="currentOwner.telephone">
+                <input type="text" class="form-control" id="contactNumber" ng-model="currentBusinessPartner.telephone">
               </div>
               <div class="form-group">
                 <label for="email">Email</label>
@@ -173,7 +173,7 @@
             </div>
             <div class="col-md-8 col-md-offset-2">
               <div class="form-group form-group-action">
-                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editOwnerSuccessModal" data-dismiss="modal" aria-label="Close" ng-click="saveOwner()">Update Owner</button>
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editBusinessPartnerSuccessModal" data-dismiss="modal" aria-label="Close" ng-click="saveBusinessPartner()">Update BusinessPartner</button>
                 <button class="btn btn-link" class="close" data-dismiss="modal" aria-label="Close">Cancel</button>
               </div>
             </div>
@@ -184,8 +184,8 @@
   </div>
 </div>
 
-<!-- Edit Owner Success Modal -->
-<div class="modal modal-owner fade" id="editOwnerSuccessModal" tabindex="-1">
+<!-- Edit BusinessPartner Success Modal -->
+<div class="modal modal-businessPartner fade" id="editBusinessPartnerSuccessModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -193,7 +193,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <h1 class="sub-header">Owner updated successfully!</h1>
+              <h1 class="sub-header">BusinessPartner updated successfully!</h1>
             </div>
           </div>
         </div>
@@ -203,10 +203,10 @@
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
               <div class="alert alert-success" role="alert">
-                Well done! You've successfully updated an owner.
+                Well done! You've successfully updated an businessPartner.
               </div>
               <div class="form-group form-group-action">
-                <a href="owner_details.html" class="btn btn-primary">View owner's details</a>
+                <a href="businessPartner_details.html" class="btn btn-primary">View businessPartner's details</a>
                 <button class="btn btn-link" data-dismiss="modal" aria-label="Close">Close</button>
               </div>
             </div>

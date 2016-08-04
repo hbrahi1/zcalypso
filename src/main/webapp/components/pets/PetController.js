@@ -10,11 +10,11 @@ var PetController = ['$scope', 'Pet', function($scope, Pet) {
 
 }];
 
-var PetDetailsController = ['$scope','PetType','OwnerPet',function($scope,PetType,OwnerPet,Pet) {
+var PetDetailsController = ['$scope','PetType','BusinessPartnerPet',function($scope,PetType,BusinessPartnerPet,Pet) {
 	$scope.petTypes = PetType.query();
 	
 	$scope.save = function(){
-		currentOwnerId = $scope.currentOwner.id;
+		currentBusinessPartnerId = $scope.currentBusinessPartner.id;
 
 		for (i=0; i<$scope.petTypes.length; i++){
 			if ($scope.petTypes[i].id == $scope.currentPet.type.id){
@@ -23,17 +23,17 @@ var PetDetailsController = ['$scope','PetType','OwnerPet',function($scope,PetTyp
 			}
 		}
 		
-		OwnerPet.save({ownerId:currentOwnerId},$scope.currentPet,function(pet) {
+		BusinessPartnerPet.save({businessPartnerId:currentBusinessPartnerId},$scope.currentPet,function(pet) {
 			var newPet = true;
-			for (i=0;i<$scope.currentOwner.pets.length;i++) {
-				if($scope.currentOwner.pets[i].id == pet.id) {
-					$scope.currentOwner.pets[i] == pet;
+			for (i=0;i<$scope.currentBusinessPartner.pets.length;i++) {
+				if($scope.currentBusinessPartner.pets[i].id == pet.id) {
+					$scope.currentBusinessPartner.pets[i] == pet;
 					newPet = false;
 					break;
 				}
 			}
 			if(newPet) {
-				$scope.currentOwner.pets.push(pet);
+				$scope.currentBusinessPartner.pets.push(pet);
 			}
 		});
 	};

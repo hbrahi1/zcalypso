@@ -23,12 +23,12 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.calypso.model.Owner;
+import com.calypso.model.BusinessPartner;
 import com.calypso.model.Pet;
 import com.calypso.model.PetType;
 import com.calypso.model.Vet;
 import com.calypso.model.Visit;
-import com.calypso.repository.OwnerRepository;
+import com.calypso.repository.BusinessPartnerRepository;
 import com.calypso.repository.PetRepository;
 import com.calypso.repository.VetRepository;
 import com.calypso.repository.VisitRepository;
@@ -40,18 +40,18 @@ import com.calypso.repository.VisitRepository;
  * @author 
  */
 @Service
-public class ClinicServiceImpl implements ClinicService {
+public class CalypsoServiceImpl implements CalypsoService {
 
     private PetRepository petRepository;
     private VetRepository vetRepository;
-    private OwnerRepository ownerRepository;
+    private BusinessPartnerRepository businessPartnerRepository;
     private VisitRepository visitRepository;
 
     @Autowired
-    public ClinicServiceImpl(PetRepository petRepository, VetRepository vetRepository, OwnerRepository ownerRepository, VisitRepository visitRepository) {
+    public CalypsoServiceImpl(PetRepository petRepository, VetRepository vetRepository, BusinessPartnerRepository businessPartnerRepository, VisitRepository visitRepository) {
         this.petRepository = petRepository;
         this.vetRepository = vetRepository;
-        this.ownerRepository = ownerRepository;
+        this.businessPartnerRepository = businessPartnerRepository;
         this.visitRepository = visitRepository;
     }
 
@@ -63,20 +63,20 @@ public class ClinicServiceImpl implements ClinicService {
 
     @Override
     @Transactional(readOnly = true)
-    public Owner findOwnerById(int id) throws DataAccessException {
-        return ownerRepository.findById(id);
+    public BusinessPartner findBusinessPartnerById(int id) throws DataAccessException {
+        return businessPartnerRepository.findById(id);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException {
-        return ownerRepository.findByLastName(lastName);
+    public Collection<BusinessPartner> findBusinessPartnerByLastName(String lastName) throws DataAccessException {
+        return businessPartnerRepository.findByLastName(lastName);
     }
 
     @Override
     @Transactional
-    public void saveOwner(Owner owner) throws DataAccessException {
-        ownerRepository.save(owner);
+    public void saveBusinessPartner(BusinessPartner businessPartner) throws DataAccessException {
+        businessPartnerRepository.save(businessPartner);
     }
 
 

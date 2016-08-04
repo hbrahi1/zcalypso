@@ -1,4 +1,4 @@
-<section id="owners" class="sections sections-narrow">
+<section id="businessPartners" class="sections sections-narrow">
   <div class="container">
     <div class="action-items pull-right">
       <div class="action-item pull-right">
@@ -16,15 +16,15 @@
         </div>
       </div>
     </div>
-    <h2 class="sub-header">Owners</h2>
+    <h2 class="sub-header">BusinessPartners</h2>
     <div class="row">
-      <div class="col-md-3" data-ng-repeat="owner in owners">
+      <div class="col-md-3" data-ng-repeat="businessPartner in businessPartners">
         <div class="thumbnail">
-          <a data-ui-sref="ownerDetails({id: owner.id})"><img class="img-circle" data-ng-src="images/avatars/owner{{owner.id}}.jpg" alt="{{owner.firstName + ' ' + owner.lastName}}"></img></a>
+          <a data-ui-sref="businessPartnerDetails({id: businessPartner.id})"><img class="img-circle" data-ng-src="images/avatars/businessPartner{{businessPartner.id}}.jpg" alt="{{businessPartner.firstName + ' ' + businessPartner.lastName}}"></img></a>
           <div class="caption">
-            <h3 class="caption-heading"><a href="show.html" data-ng-bind="owner.firstName + ' ' +owner.lastName"></a></h3>
-            <p data-ng-bind="owner.city"></p>
-            <p data-ng-bin="owner.address"></p>
+            <h3 class="caption-heading"><a href="show.html" data-ng-bind="businessPartner.firstName + ' ' +businessPartner.lastName"></a></h3>
+            <p data-ng-bind="businessPartner.city"></p>
+            <p data-ng-bin="businessPartner.address"></p>
           </div>
         </div>
       </div>

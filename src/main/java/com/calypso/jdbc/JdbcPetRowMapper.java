@@ -36,7 +36,7 @@ class JdbcPetRowMapper implements ParameterizedRowMapper<JdbcPet> {
         Date birthDate = rs.getDate("birth_date");
         pet.setBirthDate(new DateTime(birthDate));
         pet.setTypeId(rs.getInt("type_id"));
-        pet.setOwnerId(rs.getInt("owner_id"));
+        pet.setBusinessPartnerId(rs.getInt("businessPartner_id"));
         return pet;
     }
 }

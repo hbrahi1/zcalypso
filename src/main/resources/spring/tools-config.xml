@@ -17,7 +17,7 @@
          http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--
-        Simply defining this bean will cause requests to owner names to be saved.
+        Simply defining this bean will cause requests to businessPartner names to be saved.
         This aspect is defined in calypso.jar's META-INF/aop.xml file.
         Note that we can dependency inject this bean like any other bean.
     -->

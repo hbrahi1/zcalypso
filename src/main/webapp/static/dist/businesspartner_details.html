@@ -2,18 +2,13 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>Pet Clinic - Owner Details</title>
+    <title>Pet Clinic - BusinessPartner Details</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="/favicon.ico">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
+
     <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
   </head>
   <body>
     <!--[if lt IE 10]>
@@ -37,7 +32,7 @@
         <div id="nav-menu" class="navbar-collapse navbar-left collapse">
           <ul class="nav navbar-nav navbar-menu">
             <li><a href="dashboard.html">Dashboard</a></li>
-            <li class="active"><a href="owners.html">Owners</a></li>
+            <li class="active"><a href="businessPartners.html">BusinessPartners</a></li>
             <li><a href="pets.html">Pets</a></li>
             <li><a href="vets.html">Vets</a></li>
           </ul>
@@ -47,7 +42,7 @@
             <button class="btn btn-default btn-primary btn-new navbar-btn" data-toggle="dropdown">Create New</button>
           </li>
           <li><a href="#" data-toggle="modal" data-target="#searchModal"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
-          <li><a href="#" data-toggle="modal" data-target="#addOwnerModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></li>
+          <li><a href="#" data-toggle="modal" data-target="#addBusinessPartnerModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle img-profile" data-toggle="dropdown" role="button" aria-expanded="false">
               <img class="img-circle img-circle-small" src="images/avatar.jpg" width="30" height="30">
@@ -65,12 +60,12 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-    <!-- Owner Brief Info -->
+    <!-- BusinessPartner Brief Info -->
     <header class="sections sections-narrow sections-light">
       <div class="container">
         <div class="media media-welcome">
           <div class="media-left">
-            <img src="images/owner-default.png" class="img-circle media-object" width="90" height="90">
+            <img src="images/businessPartner-default.png" class="img-circle media-object" width="90" height="90">
           </div>
           <div class="media-body">
             <div class="pull-right stats stats-lg">
@@ -91,14 +86,14 @@
       </div>
     </header>
 
-    <!-- Owners -->
-    <section id="ownersInfo" class="sections sections-no-padding sections-darker">
+    <!-- BusinessPartners -->
+    <section id="businessPartnersInfo" class="sections sections-no-padding sections-darker">
       <div class="container">
         <div class="row">
           <div class="col-md-9 col-border-right">
             <div class="section-inner-padding">
-              <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#editOwnerModal"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit Owner</a>
-              <h2 class="h3 sub-header">Owner Information</h2>
+              <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#editBusinessPartnerModal"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit BusinessPartner</a>
+              <h2 class="h3 sub-header">BusinessPartner Information</h2>
               <form class="form-inline form-inline-display">
                 <div class="form-group">
                   <p>First Name</p>
@@ -141,7 +136,7 @@
           </div>
           <div class="col-md-3">
             <div class="section-inner-padding">
-              <h2 class="h3 sub-header">Owner Activities</h2>
+              <h2 class="h3 sub-header">BusinessPartner Activities</h2>
               <!-- List group -->
               <ul class="list-group">
                 <li class="list-group-item">
@@ -179,7 +174,7 @@
             </div>
           </div>
         </div>
-        <h2 class="sub-header">Owner's Pets</h2>
+        <h2 class="sub-header">BusinessPartner's Pets</h2>
         <div class="row thumbnail-wrapper">
           <div class="col-md-3">
             <div class="thumbnail">
@@ -207,11 +202,11 @@
     <section id="pets" class="sections sections-bottom-nav sections-darker">
       <div class="container">
         <ul class="pager pager-link pull-left">
-          <li><a href="owners.html"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Back to Owners List</a></li>
+          <li><a href="businessPartners.html"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Back to BusinessPartners List</a></li>
         </ul>
         <ul class="pager pager-link pull-right">
-          <li><a href="owner_details.html"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Carlos Estaban</a></li>
-          <li><a href="owner_details.html">Jean Coleman <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li>
+          <li><a href="businessPartner_details.html"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Carlos Estaban</a></li>
+          <li><a href="businessPartner_details.html">Jean Coleman <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></li>
         </ul>
       </div>
     </section>
@@ -224,8 +219,8 @@
       </div>
     </footer>
 
-    <!-- Add Owner Modal -->
-    <div class="modal modal-owner fade" id="addOwnerModal" tabindex="-1">
+    <!-- Add BusinessPartner Modal -->
+    <div class="modal modal-businessPartner fade" id="addBusinessPartnerModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -233,8 +228,8 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                  <h1 class="sub-header">Add An Owner</h1>
-                  <em class="text-muted">Fill up pet owners basic information and contact details</em>
+                  <h1 class="sub-header">Add An BusinessPartner</h1>
+                  <em class="text-muted">Fill up pet businessPartners basic information and contact details</em>
                 </div>
               </div>
             </div>
@@ -288,7 +283,7 @@
                 </div>
                 <div class="col-md-8 col-md-offset-2">
                   <div class="form-group form-group-action">
-                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#addOwnerSuccessModal" data-dismiss="modal" aria-label="Close">Add Owner</button>
+                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#addBusinessPartnerSuccessModal" data-dismiss="modal" aria-label="Close">Add BusinessPartner</button>
                     <button class="btn btn-link" class="close" data-dismiss="modal" aria-label="Close">Cancel</button>
                   </div>
                 </div>
@@ -299,8 +294,8 @@
       </div>
     </div>
 
-    <!-- Add Owner Success Modal -->
-    <div class="modal modal-owner fade" id="addOwnerSuccessModal" tabindex="-1">
+    <!-- Add BusinessPartner Success Modal -->
+    <div class="modal modal-businessPartner fade" id="addBusinessPartnerSuccessModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -308,7 +303,7 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                  <h1 class="sub-header">Owner added successfully!</h1>
+                  <h1 class="sub-header">BusinessPartner added successfully!</h1>
                 </div>
               </div>
             </div>
@@ -318,10 +313,10 @@
               <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                   <div class="alert alert-success" role="alert">
-                    Well done! You've successfully added an a new owner.
+                    Well done! You've successfully added an a new businessPartner.
                   </div>
                   <div class="form-group form-group-action">
-                    <a href="owner_details.html" class="btn btn-primary">View owner's details</a>
+                    <a href="businessPartner_details.html" class="btn btn-primary">View businessPartner's details</a>
                     <button class="btn btn-link" data-dismiss="modal" aria-label="Close">Close</button>
                   </div>
                 </div>
@@ -332,8 +327,8 @@
       </div>
     </div>
 
-    <!-- Edit Owner Modal -->
-    <div class="modal modal-owner fade" id="editOwnerModal" tabindex="-1">
+    <!-- Edit BusinessPartner Modal -->
+    <div class="modal modal-businessPartner fade" id="editBusinessPartnerModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -341,8 +336,8 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                  <h1 class="sub-header">Edit Owner</h1>
-                  <em class="text-muted">Fill up pet owners basic information and contact details</em>
+                  <h1 class="sub-header">Edit BusinessPartner</h1>
+                  <em class="text-muted">Fill up pet businessPartners basic information and contact details</em>
                 </div>
               </div>
             </div>
@@ -396,7 +391,7 @@
                 </div>
                 <div class="col-md-8 col-md-offset-2">
                   <div class="form-group form-group-action">
-                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editOwnerSuccessModal" data-dismiss="modal" aria-label="Close">Update Owner</button>
+                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#editBusinessPartnerSuccessModal" data-dismiss="modal" aria-label="Close">Update BusinessPartner</button>
                     <button class="btn btn-link" class="close" data-dismiss="modal" aria-label="Close">Cancel</button>
                   </div>
                 </div>
@@ -407,8 +402,8 @@
       </div>
     </div>
 
-    <!-- Edit Owner Success Modal -->
-    <div class="modal modal-owner fade" id="editOwnerSuccessModal" tabindex="-1">
+    <!-- Edit BusinessPartner Success Modal -->
+    <div class="modal modal-businessPartner fade" id="editBusinessPartnerSuccessModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -416,7 +411,7 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                  <h1 class="sub-header">Owner updated successfully!</h1>
+                  <h1 class="sub-header">BusinessPartner updated successfully!</h1>
                 </div>
               </div>
             </div>
@@ -426,10 +421,10 @@
               <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                   <div class="alert alert-success" role="alert">
-                    Well done! You've successfully updated an owner.
+                    Well done! You've successfully updated an businessPartner.
                   </div>
                   <div class="form-group form-group-action">
-                    <a href="owner_details.html" class="btn btn-primary">View owner's details</a>
+                    <a href="businessPartner_details.html" class="btn btn-primary">View businessPartner's details</a>
                     <button class="btn btn-link" data-dismiss="modal" aria-label="Close">Close</button>
                   </div>
                 </div>
@@ -441,7 +436,7 @@
     </div>
 
     <!-- Add New Pet Modal -->
-    <div class="modal modal-owner fade" id="addPetModal" tabindex="-1">
+    <div class="modal modal-businessPartner fade" id="addPetModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -460,7 +455,7 @@
               <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                   <div class="form-group">
-                    <label for="firstName">Owner</label>
+                    <label for="firstName">BusinessPartner</label>
                     <input type="text" class="form-control" id="firstName" value="Maria Rodriguez" readonly>
                   </div>
                   <div class="form-group">
@@ -499,7 +494,7 @@
     </div>
 
     <!-- Add New Pet Success Modal -->
-    <div class="modal modal-owner fade" id="addPetSuccessModal" tabindex="-1">
+    <div class="modal modal-businessPartner fade" id="addPetSuccessModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -532,7 +527,7 @@
     </div>
 
     <!-- Edit Pet Modal -->
-    <div class="modal modal-owner fade" id="editPetModal" tabindex="-1">
+    <div class="modal modal-businessPartner fade" id="editPetModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -551,7 +546,7 @@
               <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                   <div class="form-group">
-                    <label for="firstName">Owner</label>
+                    <label for="firstName">BusinessPartner</label>
                     <input type="text" class="form-control" id="firstName" value="Maria Rodriguez" readonly>
                   </div>
                   <div class="form-group">
@@ -590,7 +585,7 @@
     </div>
 
     <!-- Edit Pet Success Modal -->
-    <div class="modal modal-owner fade" id="editPetSuccessModal" tabindex="-1">
+    <div class="modal modal-businessPartner fade" id="editPetSuccessModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -611,7 +606,7 @@
                     Well done! You've successfully update a pet.
                   </div>
                   <div class="form-group form-group-action">
-                    <a href="owner_details.html" class="btn btn-primary">View owner's pets</a>
+                    <a href="businessPartner_details.html" class="btn btn-primary">View businessPartner's pets</a>
                     <button class="btn btn-link" data-dismiss="modal" aria-label="Close">Close</button>
                   </div>
                 </div>
@@ -623,7 +618,7 @@
     </div>
 
     <!-- Add Pet Visit Modal -->
-    <div class="modal modal-owner fade" id="addPetVisitModal" tabindex="-1">
+    <div class="modal modal-businessPartner fade" id="addPetVisitModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -666,7 +661,7 @@
     </div>
 
     <!-- Edit Pet Success Modal -->
-    <div class="modal modal-owner fade" id="addPetVisitSuccessModal" tabindex="-1">
+    <div class="modal modal-businessPartner fade" id="addPetVisitSuccessModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -705,7 +700,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             <div class="container">
             <h1 class="sub-header">Search Calypso</h1>
-            <em class="text-muted">Start typing to search for owner, pets, or veterinarians...</em>
+            <em class="text-muted">Start typing to search for businessPartner, pets, or veterinarians...</em>
           </div>
         </div>
         <div class="modal-body">
@@ -727,7 +722,7 @@
               <div class="row thumbnail-wrapper">
                 <div class="col-md-3" ng-repeat="x in [1,2,3,4,5,6,7]">
                   <div class="thumbnail">
-                    <a href="#"><img src="images/owner-default.png" class="img-circle" alt="Generic placeholder image"></a>
+                    <a href="#"><img src="images/businessPartner-default.png" class="img-circle" alt="Generic placeholder image"></a>
                     <div class="caption">
                       <h3 class="caption-heading"><a href="#">Eduardo Rodriguez</a></h3>
                       <p class="caption-meta">2693 Commerce St., McFarland</p>
@@ -743,26 +738,8 @@
       </div>
     </div>
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+    <script src="scripts/vendor.js"></script>
 
-    <!-- build:js({app,.tmp}) scripts/main.js -->
     <script src="scripts/main.js"></script>
-    <!-- endbuild -->
 </body>
 </html>

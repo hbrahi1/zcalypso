@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.calypso.model.Vet;
-import com.calypso.service.ClinicService;
+import com.calypso.service.CalypsoService;
 
 /**
  * @author Juergen Hoeller
@@ -35,17 +35,17 @@ import com.calypso.service.ClinicService;
 @RequestMapping(value="/api")
 public class VetRestController {
 
-    private final ClinicService clinicService;
+    private final CalypsoService calypsoService;
 
 
     @Autowired
-    public VetRestController(ClinicService clinicService) {
-        this.clinicService = clinicService;
+    public VetRestController(CalypsoService calypsoService) {
+        this.calypsoService = calypsoService;
     }
 
     @RequestMapping(value = "/vets", method = RequestMethod.GET)
     public Collection<Vet> getVets() {
-        return this.clinicService.findVets();
+        return this.calypsoService.findVets();
     }
 
 

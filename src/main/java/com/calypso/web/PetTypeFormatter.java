@@ -24,7 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
 
 import com.calypso.model.PetType;
-import com.calypso.service.ClinicService;
+import com.calypso.service.CalypsoService;
 
 /**
  * Instructs Spring MVC on how to parse and print elements of type 'PetType'. Starting from Spring 3.0, Formatters have
@@ -40,12 +40,12 @@ import com.calypso.service.ClinicService;
  */
 public class PetTypeFormatter implements Formatter<PetType> {
 
-    private final ClinicService clinicService;
+    private final CalypsoService calypsoService;
 
 
     @Autowired
-    public PetTypeFormatter(ClinicService clinicService) {
-        this.clinicService = clinicService;
+    public PetTypeFormatter(CalypsoService calypsoService) {
+        this.calypsoService = calypsoService;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class PetTypeFormatter implements Formatter<PetType> {
 
     @Override
     public PetType parse(String text, Locale locale) throws ParseException {
-        Collection<PetType> findPetTypes = this.clinicService.findPetTypes();
+        Collection<PetType> findPetTypes = this.calypsoService.findPetTypes();
         for (PetType type : findPetTypes) {
             if (type.getName().equals(text)) {
                 return type;

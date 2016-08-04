@@ -21,22 +21,22 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
 
-import com.calypso.model.Owner;
-import com.calypso.repository.OwnerRepository;
+import com.calypso.model.BusinessPartner;
+import com.calypso.repository.BusinessPartnerRepository;
 
 /**
- * Spring Data JPA specialization of the {@link OwnerRepository} interface
+ * Spring Data JPA specialization of the {@link BusinessPartnerRepository} interface
  *
  * @author Michael Isvy
  * @since 15.1.2013
  */
-public interface SpringDataOwnerRepository extends OwnerRepository, Repository<Owner, Integer> {
+public interface SpringDataBusinessPartnerRepository extends BusinessPartnerRepository, Repository<BusinessPartner, Integer> {
 		
 		@Override
-	    @Query("SELECT DISTINCT owner FROM Owner owner left join fetch owner.pets WHERE owner.lastName LIKE :lastName%")
-	    public Collection<Owner> findByLastName(@Param("lastName") String lastName);
+	    @Query("SELECT DISTINCT businessPartner FROM BusinessPartner businessPartner left join fetch businessPartner.pets WHERE businessPartner.lastName LIKE :lastName%")
+	    public Collection<BusinessPartner> findByLastName(@Param("lastName") String lastName);
 		
 		@Override
-		@Query("SELECT owner FROM Owner owner left join fetch owner.pets WHERE owner.id =:id")
-	    public Owner findById(@Param("id") int id);
+		@Query("SELECT businessPartner FROM BusinessPartner businessPartner left join fetch businessPartner.pets WHERE businessPartner.id =:id")
+	    public BusinessPartner findById(@Param("id") int id);
 }

@@ -19,7 +19,7 @@ import com.calypso.model.Pet;
 
 /**
  * Subclass of Pet that carries temporary id properties which are only relevant for a JDBC implementation of the
- * ClinicService.
+ * CalypsoService.
  *
  * @author Juergen Hoeller
  */
@@ -27,7 +27,7 @@ class JdbcPet extends Pet {
 
     private int typeId;
 
-    private int ownerId;
+    private int businessPartnerId;
 
 
     public void setTypeId(int typeId) {
@@ -38,12 +38,12 @@ class JdbcPet extends Pet {
         return this.typeId;
     }
 
-    public void setOwnerId(int ownerId) {
-        this.ownerId = ownerId;
+    public void setBusinessPartnerId(int businessPartnerId) {
+        this.businessPartnerId = businessPartnerId;
     }
 
-    public int getOwnerId() {
-        return this.ownerId;
+    public int getBusinessPartnerId() {
+        return this.businessPartnerId;
     }
 
 }

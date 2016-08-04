@@ -30,10 +30,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.calypso.model.Owner;
+import com.calypso.model.BusinessPartner;
 import com.calypso.model.Pet;
 import com.calypso.model.PetType;
-import com.calypso.service.ClinicService;
+import com.calypso.service.CalypsoService;
 
 /**
  * @author Juergen Hoeller
@@ -44,17 +44,17 @@ import com.calypso.service.ClinicService;
 @SessionAttributes("pet")
 public class PetController {
 
-    private final ClinicService clinicService;
+    private final CalypsoService calypsoService;
 
 
     @Autowired
-    public PetController(ClinicService clinicService) {
-        this.clinicService = clinicService;
+    public PetController(CalypsoService calypsoService) {
+        this.calypsoService = calypsoService;
     }
 
     @ModelAttribute("types")
     public Collection<PetType> populatePetTypes() {
-        return this.clinicService.findPetTypes();
+        return this.calypsoService.findPetTypes();
     }
 
     @InitBinder
@@ -62,44 +62,44 @@ public class PetController {
         dataBinder.setDisallowedFields("id");
     }
 
-    @RequestMapping(value = "/owners/{ownerId}/pets/new", method = RequestMethod.GET)
-    public String initCreationForm(@PathVariable("ownerId") int ownerId, Map<String, Object> model) {
-        Owner owner = this.clinicService.findOwnerById(ownerId);
+    @RequestMapping(value = "/businessPartners/{businessPartnerId}/pets/new", method = RequestMethod.GET)
+    public String initCreationForm(@PathVariable("businessPartnerId") int businessPartnerId, Map<String, Object> model) {
+        BusinessPartner businessPartner = this.calypsoService.findBusinessPartnerById(businessPartnerId);
         Pet pet = new Pet();
-        owner.addPet(pet);
+        businessPartner.addPet(pet);
         model.put("pet", pet);
         return "pets/createOrUpdatePetForm";
     }
 
-    @RequestMapping(value = "/owners/{ownerId}/pets/new", method = RequestMethod.POST)
+    @RequestMapping(value = "/businessPartners/{businessPartnerId}/pets/new", method = RequestMethod.POST)
     public String processCreationForm(@ModelAttribute("pet") Pet pet, BindingResult result, SessionStatus status) {
         new PetValidator().validate(pet, result);
         if (result.hasErrors()) {
             return "pets/createOrUpdatePetForm";
         } else {
-            this.clinicService.savePet(pet);
+            this.calypsoService.savePet(pet);
             status.setComplete();
-            return "redirect:/owners/{ownerId}";
+            return "redirect:/businessPartners/{businessPartnerId}";
         }
     }
 
-    @RequestMapping(value = "/owners/*/pets/{petId}/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/businessPartners/*/pets/{petId}/edit", method = RequestMethod.GET)
     public String initUpdateForm(@PathVariable("petId") int petId, Map<String, Object> model) {
-        Pet pet = this.clinicService.findPetById(petId);
+        Pet pet = this.calypsoService.findPetById(petId);
         model.put("pet", pet);
         return "pets/createOrUpdatePetForm";
     }
 
-    @RequestMapping(value = "/owners/{ownerId}/pets/{petId}/edit", method = {RequestMethod.PUT, RequestMethod.POST})
+    @RequestMapping(value = "/businessPartners/{businessPartnerId}/pets/{petId}/edit", method = {RequestMethod.PUT, RequestMethod.POST})
     public String processUpdateForm(@ModelAttribute("pet") Pet pet, BindingResult result, SessionStatus status) {
         // we're not using @Valid annotation here because it is easier to define such validation rule in Java
         new PetValidator().validate(pet, result);
         if (result.hasErrors()) {
             return "pets/createOrUpdatePetForm";
         } else {
-            this.clinicService.savePet(pet);
+            this.calypsoService.savePet(pet);
             status.setComplete();
-            return "redirect:/owners/{ownerId}";
+            return "redirect:/businessPartners/{businessPartnerId}";
         }
     }
 

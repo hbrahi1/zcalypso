@@ -28,22 +28,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.calypso.model.Owner;
+import com.calypso.model.BusinessPartner;
 import com.calypso.model.Pet;
 import com.calypso.model.PetType;
 import com.calypso.model.Vet;
 import com.calypso.model.Visit;
-import com.calypso.service.ClinicService;
+import com.calypso.service.CalypsoService;
 import com.calypso.util.EntityUtils;
 
 /**
- * <p> Base class for {@link ClinicService} integration tests. </p> <p> Subclasses should specify Spring context
+ * <p> Base class for {@link CalypsoService} integration tests. </p> <p> Subclasses should specify Spring context
  * configuration using {@link ContextConfiguration @ContextConfiguration} annotation </p> <p>
- * AbstractclinicServiceTests and its subclasses benefit from the following services provided by the Spring
+ * AbstractcalypsoServiceTests and its subclasses benefit from the following services provided by the Spring
  * TestContext Framework: </p> <ul> <li><strong>Spring IoC container caching</strong> which spares us unnecessary set up
  * time between test execution.</li> <li><strong>Dependency Injection</strong> of test fixture instances, meaning that
  * we don't need to perform application context lookups. See the use of {@link Autowired @Autowired} on the <code>{@link
- * AbstractclinicServiceTests#clinicService clinicService}</code> instance variable, which uses autowiring <em>by
+ * AbstractcalypsoServiceTests#calypsoService calypsoService}</code> instance variable, which uses autowiring <em>by
  * type</em>. <li><strong>Transaction management</strong>, meaning each test method is executed in its own transaction,
  * which is automatically rolled back by default. Thus, even if tests insert or otherwise change database state, there
  * is no need for a teardown or cleanup script. <li> An {@link org.springframework.context.ApplicationContext
@@ -58,71 +58,71 @@ import com.calypso.util.EntityUtils;
 public abstract class AbstractClinicServiceTests {
 
     @Autowired
-    protected ClinicService clinicService;
+    protected CalypsoService calypsoService;
 
     @Test
     @Transactional
-    public void findOwners() {
-        Collection<Owner> owners = this.clinicService.findOwnerByLastName("Davis");
-        assertEquals(2, owners.size());
-        owners = this.clinicService.findOwnerByLastName("Daviss");
-        assertEquals(0, owners.size());
+    public void findBusinessPartners() {
+        Collection<BusinessPartner> businessPartners = this.calypsoService.findBusinessPartnerByLastName("Davis");
+        assertEquals(2, businessPartners.size());
+        businessPartners = this.calypsoService.findBusinessPartnerByLastName("Daviss");
+        assertEquals(0, businessPartners.size());
     }
 
     @Test
-    public void findSingleOwner() {
-        Owner owner1 = this.clinicService.findOwnerById(1);
-        assertTrue(owner1.getLastName().startsWith("Franklin"));
-        Owner owner10 = this.clinicService.findOwnerById(10);
-        assertEquals("Carlos", owner10.getFirstName());
+    public void findSingleBusinessPartner() {
+        BusinessPartner businessPartner1 = this.calypsoService.findBusinessPartnerById(1);
+        assertTrue(businessPartner1.getLastName().startsWith("Franklin"));
+        BusinessPartner businessPartner10 = this.calypsoService.findBusinessPartnerById(10);
+        assertEquals("Carlos", businessPartner10.getFirstName());
 
-        assertEquals(owner1.getPets().size(), 1);
-    }
-
-    @Test
-    @Transactional
-    public void insertOwner() {
-        Collection<Owner> owners = this.clinicService.findOwnerByLastName("Schultz");
-        int found = owners.size();
-        Owner owner = new Owner();
-        owner.setFirstName("Sam");
-        owner.setLastName("Schultz");
-        owner.setAddress("4, Evans Street");
-        owner.setCity("Wollongong");
-        owner.setTelephone("4444444444");
-        this.clinicService.saveOwner(owner);
-        Assert.assertNotEquals("Owner Id should have been generated", owner.getId().longValue(), 0);
-        owners = this.clinicService.findOwnerByLastName("Schultz");
-        assertEquals("Verifying number of owners after inserting a new one.", found + 1, owners.size());
+        assertEquals(businessPartner1.getPets().size(), 1);
     }
 
     @Test
     @Transactional
-    public void updateOwner() throws Exception {
-        Owner o1 = this.clinicService.findOwnerById(1);
+    public void insertBusinessPartner() {
+        Collection<BusinessPartner> businessPartners = this.calypsoService.findBusinessPartnerByLastName("Schultz");
+        int found = businessPartners.size();
+        BusinessPartner businessPartner = new BusinessPartner();
+        businessPartner.setFirstName("Sam");
+        businessPartner.setLastName("Schultz");
+        businessPartner.setAddress("4, Evans Street");
+        businessPartner.setCity("Wollongong");
+        businessPartner.setTelephone("4444444444");
+        this.calypsoService.saveBusinessPartner(businessPartner);
+        Assert.assertNotEquals("BusinessPartner Id should have been generated", businessPartner.getId().longValue(), 0);
+        businessPartners = this.calypsoService.findBusinessPartnerByLastName("Schultz");
+        assertEquals("Verifying number of businessPartners after inserting a new one.", found + 1, businessPartners.size());
+    }
+
+    @Test
+    @Transactional
+    public void updateBusinessPartner() throws Exception {
+        BusinessPartner o1 = this.calypsoService.findBusinessPartnerById(1);
         String old = o1.getLastName();
         o1.setLastName(old + "X");
-        this.clinicService.saveOwner(o1);
-        o1 = this.clinicService.findOwnerById(1);
+        this.calypsoService.saveBusinessPartner(o1);
+        o1 = this.calypsoService.findBusinessPartnerById(1);
         assertEquals(old + "X", o1.getLastName());
     }
 
 	@Test
 	public void findPet() {
-	    Collection<PetType> types = this.clinicService.findPetTypes();
-	    Pet pet7 = this.clinicService.findPetById(7);
+	    Collection<PetType> types = this.calypsoService.findPetTypes();
+	    Pet pet7 = this.calypsoService.findPetById(7);
 	    assertTrue(pet7.getName().startsWith("Samantha"));
 	    assertEquals(EntityUtils.getById(types, PetType.class, 1).getId(), pet7.getType().getId());
-	    assertEquals("Jean", pet7.getOwner().getFirstName());
-	    Pet pet6 = this.clinicService.findPetById(6);
+	    assertEquals("Jean", pet7.getBusinessPartner().getFirstName());
+	    Pet pet6 = this.calypsoService.findPetById(6);
 	    assertEquals("George", pet6.getName());
 	    assertEquals(EntityUtils.getById(types, PetType.class, 4).getId(), pet6.getType().getId());
-	    assertEquals("Peter", pet6.getOwner().getFirstName());
+	    assertEquals("Peter", pet6.getBusinessPartner().getFirstName());
 	}
 
 	@Test
 	public void getPetTypes() {
-	    Collection<PetType> petTypes = this.clinicService.findPetTypes();
+	    Collection<PetType> petTypes = this.calypsoService.findPetTypes();
 	
 	    PetType petType1 = EntityUtils.getById(petTypes, PetType.class, 1);
 	    assertEquals("cat", petType1.getName());
@@ -133,37 +133,37 @@ public abstract class AbstractClinicServiceTests {
 	@Test
 	@Transactional
 	public void insertPet() {
-	    Owner owner6 = this.clinicService.findOwnerById(6);
-	    int found = owner6.getPets().size();
+	    BusinessPartner businessPartner6 = this.calypsoService.findBusinessPartnerById(6);
+	    int found = businessPartner6.getPets().size();
 	    Pet pet = new Pet();
 	    pet.setName("bowser");
-	    Collection<PetType> types = this.clinicService.findPetTypes();
+	    Collection<PetType> types = this.calypsoService.findPetTypes();
 	    pet.setType(EntityUtils.getById(types, PetType.class, 2));
 	    pet.setBirthDate(new DateTime());
-	    owner6.addPet(pet);
-	    assertEquals(found + 1, owner6.getPets().size());
-	    // both storePet and storeOwner are necessary to cover all ORM tools
-	    this.clinicService.savePet(pet);
-	    this.clinicService.saveOwner(owner6);
-	    owner6 = this.clinicService.findOwnerById(6);
-	    assertEquals(found + 1, owner6.getPets().size());
+	    businessPartner6.addPet(pet);
+	    assertEquals(found + 1, businessPartner6.getPets().size());
+	    // both storePet and storeBusinessPartner are necessary to cover all ORM tools
+	    this.calypsoService.savePet(pet);
+	    this.calypsoService.saveBusinessPartner(businessPartner6);
+	    businessPartner6 = this.calypsoService.findBusinessPartnerById(6);
+	    assertEquals(found + 1, businessPartner6.getPets().size());
 	    assertNotNull("Pet Id should have been generated", pet.getId());
 	}
 
 	@Test
 	@Transactional
 	public void updatePet() throws Exception {
-	    Pet pet7 = this.clinicService.findPetById(7);
+	    Pet pet7 = this.calypsoService.findPetById(7);
 	    String old = pet7.getName();
 	    pet7.setName(old + "X");
-	    this.clinicService.savePet(pet7);
-	    pet7 = this.clinicService.findPetById(7);
+	    this.calypsoService.savePet(pet7);
+	    pet7 = this.calypsoService.findPetById(7);
 	    assertEquals(old + "X", pet7.getName());
 	}
 
 	@Test
 	public void findVets() {
-	    Collection<Vet> vets = this.clinicService.findVets();
+	    Collection<Vet> vets = this.calypsoService.findVets();
 	
 	    Vet v1 = EntityUtils.getById(vets, Vet.class, 2);
 	    assertEquals("Leary", v1.getLastName());
@@ -179,15 +179,15 @@ public abstract class AbstractClinicServiceTests {
 	@Test
 	@Transactional
 	public void insertVisit() {
-	    Pet pet7 = this.clinicService.findPetById(7);
+	    Pet pet7 = this.calypsoService.findPetById(7);
 	    int found = pet7.getVisits().size();
 	    Visit visit = new Visit();
 	    pet7.addVisit(visit);
 	    visit.setDescription("test");
 	    // both storeVisit and storePet are necessary to cover all ORM tools
-	    this.clinicService.saveVisit(visit);
-	    this.clinicService.savePet(pet7);
-	    pet7 = this.clinicService.findPetById(7);
+	    this.calypsoService.saveVisit(visit);
+	    this.calypsoService.savePet(pet7);
+	    pet7 = this.calypsoService.findPetById(7);
 	    assertEquals(found + 1, pet7.getVisits().size());
 	    assertNotNull("Visit Id should have been generated", visit.getId());
 	}

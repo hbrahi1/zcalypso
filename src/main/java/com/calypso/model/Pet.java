@@ -60,9 +60,9 @@ public class Pet extends NamedEntity {
     private PetType type;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "businessPartner_id")
     @JsonIgnore
-    private Owner owner;
+    private BusinessPartner businessPartner;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
     private Set<Visit> visits;
@@ -84,12 +84,12 @@ public class Pet extends NamedEntity {
         return this.type;
     }
 
-    protected void setOwner(Owner owner) {
-        this.owner = owner;
+    protected void setBusinessPartner(BusinessPartner businessPartner) {
+        this.businessPartner = businessPartner;
     }
 
-    public Owner getOwner() {
-        return this.owner;
+    public BusinessPartner getBusinessPartner() {
+        return this.businessPartner;
     }
 
     protected void setVisitsInternal(Set<Visit> visits) {

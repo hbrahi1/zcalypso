@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.calypso.model.Pet;
 import com.calypso.model.Visit;
-import com.calypso.service.ClinicService;
+import com.calypso.service.CalypsoService;
 
 /**
  * @author Juergen Hoeller
@@ -42,12 +42,12 @@ import com.calypso.service.ClinicService;
 @Controller
 public class VisitController {
 
-    private final ClinicService clinicService;
+    private final CalypsoService calypsoService;
 
 
     @Autowired
-    public VisitController(ClinicService clinicService) {
-        this.clinicService = clinicService;
+    public VisitController(CalypsoService calypsoService) {
+        this.calypsoService = calypsoService;
     }
 
     @InitBinder
@@ -66,32 +66,32 @@ public class VisitController {
      */
     @ModelAttribute("visit")
     public Visit loadPetWithVisit(@PathVariable("petId") int petId) {
-        Pet pet = this.clinicService.findPetById(petId);
+        Pet pet = this.calypsoService.findPetById(petId);
         Visit visit = new Visit();
         pet.addVisit(visit);  
         return visit;
     }
 
 	// Spring MVC calls method loadPetWithVisit(...) before initNewVisitForm is called
-    @RequestMapping(value = "/owners/*/pets/{petId}/visits/new", method = RequestMethod.GET)
+    @RequestMapping(value = "/businessPartners/*/pets/{petId}/visits/new", method = RequestMethod.GET)
     public String initNewVisitForm(@PathVariable("petId") int petId, Map<String, Object> model) {
         return "pets/createOrUpdateVisitForm";
     }
 
 	// Spring MVC calls method loadPetWithVisit(...) before processNewVisitForm is called
-    @RequestMapping(value = "/owners/{ownerId}/pets/{petId}/visits/new", method = RequestMethod.POST)
+    @RequestMapping(value = "/businessPartners/{businessPartnerId}/pets/{petId}/visits/new", method = RequestMethod.POST)
     public String processNewVisitForm(@Valid Visit visit, BindingResult result) {
         if (result.hasErrors()) {
             return "pets/createOrUpdateVisitForm";
         } else {
-            this.clinicService.saveVisit(visit);
-            return "redirect:/owners/{ownerId}";
+            this.calypsoService.saveVisit(visit);
+            return "redirect:/businessPartners/{businessPartnerId}";
         }
     }
 
-    @RequestMapping(value = "/owners/*/pets/{petId}/visits", method = RequestMethod.GET)
+    @RequestMapping(value = "/businessPartners/*/pets/{petId}/visits", method = RequestMethod.GET)
     public String showVisits(@PathVariable int petId, Map<String, Object> model) {
-        model.put("visits", this.clinicService.findPetById(petId).getVisits());
+        model.put("visits", this.calypsoService.findPetById(petId).getVisits());
         return "visitList";
     }
 

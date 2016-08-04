@@ -32,16 +32,16 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.stereotype.Repository;
 
-import com.calypso.model.Owner;
+import com.calypso.model.BusinessPartner;
 import com.calypso.model.Pet;
 import com.calypso.model.PetType;
 import com.calypso.model.Visit;
-import com.calypso.repository.OwnerRepository;
+import com.calypso.repository.BusinessPartnerRepository;
 import com.calypso.repository.VisitRepository;
 import com.calypso.util.EntityUtils;
 
 /**
- * A simple JDBC-based implementation of the {@link OwnerRepository} interface.
+ * A simple JDBC-based implementation of the {@link BusinessPartnerRepository} interface.
  *
  * @author Ken Krebs
  * @author Juergen Hoeller
@@ -51,20 +51,20 @@ import com.calypso.util.EntityUtils;
  * @author Mark Fisher
  */
 @Repository
-public class JdbcOwnerRepositoryImpl implements OwnerRepository {
+public class JdbcBusinessPartnerRepositoryImpl implements BusinessPartnerRepository {
 
     private VisitRepository visitRepository;
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    private SimpleJdbcInsert insertOwner;
+    private SimpleJdbcInsert insertBusinessPartner;
 
     @Autowired
-    public JdbcOwnerRepositoryImpl(DataSource dataSource, NamedParameterJdbcTemplate namedParameterJdbcTemplate,
+    public JdbcBusinessPartnerRepositoryImpl(DataSource dataSource, NamedParameterJdbcTemplate namedParameterJdbcTemplate,
                                    VisitRepository visitRepository) {
 
-        this.insertOwner = new SimpleJdbcInsert(dataSource)
-                .withTableName("owners")
+        this.insertBusinessPartner = new SimpleJdbcInsert(dataSource)
+                .withTableName("businessPartners")
                 .usingGeneratedKeyColumns("id");
 
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
@@ -74,55 +74,55 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
 
 
     /**
-     * Loads {@link Owner Owners} from the data store by last name, returning all owners whose last name <i>starts</i> with
-     * the given name; also loads the {@link Pet Pets} and {@link Visit Visits} for the corresponding owners, if not
+     * Loads {@link BusinessPartner BusinessPartners} from the data store by last name, returning all businessPartners whose last name <i>starts</i> with
+     * the given name; also loads the {@link Pet Pets} and {@link Visit Visits} for the corresponding businessPartners, if not
      * already loaded.
      */
     @Override
-    public Collection<Owner> findByLastName(String lastName) throws DataAccessException {
+    public Collection<BusinessPartner> findByLastName(String lastName) throws DataAccessException {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("lastName", lastName + "%");
-        List<Owner> owners = this.namedParameterJdbcTemplate.query(
-                "SELECT id, first_name, last_name, address, city, telephone FROM owners WHERE last_name like :lastName",
+        List<BusinessPartner> businessPartners = this.namedParameterJdbcTemplate.query(
+                "SELECT id, first_name, last_name, address, city, telephone FROM businessPartners WHERE last_name like :lastName",
                 params,
-                ParameterizedBeanPropertyRowMapper.newInstance(Owner.class)
+                ParameterizedBeanPropertyRowMapper.newInstance(BusinessPartner.class)
         );
-        loadOwnersPetsAndVisits(owners);
-        return owners;
+        loadBusinessPartnersPetsAndVisits(businessPartners);
+        return businessPartners;
     }
 
     /**
-     * Loads the {@link Owner} with the supplied <code>id</code>; also loads the {@link Pet Pets} and {@link Visit Visits}
-     * for the corresponding owner, if not already loaded.
+     * Loads the {@link BusinessPartner} with the supplied <code>id</code>; also loads the {@link Pet Pets} and {@link Visit Visits}
+     * for the corresponding businessPartner, if not already loaded.
      */
     @Override
-    public Owner findById(int id) throws DataAccessException {
-        Owner owner;
+    public BusinessPartner findById(int id) throws DataAccessException {
+        BusinessPartner businessPartner;
         try {
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("id", id);
-            owner = this.namedParameterJdbcTemplate.queryForObject(
-                    "SELECT id, first_name, last_name, address, city, telephone FROM owners WHERE id= :id",
+            businessPartner = this.namedParameterJdbcTemplate.queryForObject(
+                    "SELECT id, first_name, last_name, address, city, telephone FROM businessPartners WHERE id= :id",
                     params,
-                    ParameterizedBeanPropertyRowMapper.newInstance(Owner.class)
+                    ParameterizedBeanPropertyRowMapper.newInstance(BusinessPartner.class)
             );
         } catch (EmptyResultDataAccessException ex) {
-            throw new ObjectRetrievalFailureException(Owner.class, id);
+            throw new ObjectRetrievalFailureException(BusinessPartner.class, id);
         }
-        loadPetsAndVisits(owner);
-        return owner;
+        loadPetsAndVisits(businessPartner);
+        return businessPartner;
     }
 
-    public void loadPetsAndVisits(final Owner owner) {
+    public void loadPetsAndVisits(final BusinessPartner businessPartner) {
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("id", owner.getId().intValue());
+        params.put("id", businessPartner.getId().intValue());
         final List<JdbcPet> pets = this.namedParameterJdbcTemplate.query(
-                "SELECT id, name, birth_date, type_id, owner_id FROM pets WHERE owner_id=:id",
+                "SELECT id, name, birth_date, type_id, businessPartner_id FROM pets WHERE businessPartner_id=:id",
                 params,
                 new JdbcPetRowMapper()
         );
         for (JdbcPet pet : pets) {
-            owner.addPet(pet);
+            businessPartner.addPet(pet);
             pet.setType(EntityUtils.getById(getPetTypes(), PetType.class, pet.getTypeId()));
             List<Visit> visits = this.visitRepository.findByPetId(pet.getId());
             for (Visit visit : visits) {
@@ -132,14 +132,14 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
     }
 
     @Override
-    public void save(Owner owner) throws DataAccessException {
-        BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(owner);
-        if (owner.isNew()) {
-            Number newKey = this.insertOwner.executeAndReturnKey(parameterSource);
-            owner.setId(newKey.intValue());
+    public void save(BusinessPartner businessPartner) throws DataAccessException {
+        BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(businessPartner);
+        if (businessPartner.isNew()) {
+            Number newKey = this.insertBusinessPartner.executeAndReturnKey(parameterSource);
+            businessPartner.setId(newKey.intValue());
         } else {
             this.namedParameterJdbcTemplate.update(
-                    "UPDATE owners SET first_name=:firstName, last_name=:lastName, address=:address, " +
+                    "UPDATE businessPartners SET first_name=:firstName, last_name=:lastName, address=:address, " +
                             "city=:city, telephone=:telephone WHERE id=:id",
                     parameterSource);
         }
@@ -152,14 +152,14 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
     }
 
     /**
-     * Loads the {@link Pet} and {@link Visit} data for the supplied {@link List} of {@link Owner Owners}.
+     * Loads the {@link Pet} and {@link Visit} data for the supplied {@link List} of {@link BusinessPartner BusinessPartners}.
      *
-     * @param owners the list of owners for whom the pet and visit data should be loaded
-     * @see #loadPetsAndVisits(Owner)
+     * @param businessPartners the list of businessPartners for whom the pet and visit data should be loaded
+     * @see #loadPetsAndVisits(BusinessPartner)
      */
-    private void loadOwnersPetsAndVisits(List<Owner> owners) {
-        for (Owner owner : owners) {
-            loadPetsAndVisits(owner);
+    private void loadBusinessPartnersPetsAndVisits(List<BusinessPartner> businessPartners) {
+        for (BusinessPartner businessPartner : businessPartners) {
+            loadPetsAndVisits(businessPartner);
         }
     }
 

@@ -27,7 +27,7 @@ import com.calypso.model.Visit;
 import com.calypso.repository.VisitRepository;
 
 /**
- * JPA implementation of the ClinicService interface using EntityManager.
+ * JPA implementation of the CalypsoService interface using EntityManager.
  * <p/>
  * <p>The mappings are defined in "orm.xml" located in the META-INF directory.
  *

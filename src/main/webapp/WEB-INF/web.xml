@@ -92,7 +92,7 @@ see here: http://static.springsource.org/spring/docs/current/spring-framework-re
         <servlet-name>calypso</servlet-name>
     </filter-mapping>
     
-    <!-- used to provide the ability to enter Chinese characters inside the Owner Form -->    
+    <!-- used to provide the ability to enter Chinese characters inside the BusinessPartner Form -->    
     <filter>
 	    <filter-name>encodingFilter</filter-name>
 	    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

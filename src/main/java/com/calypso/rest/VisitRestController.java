@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.calypso.model.Visit;
-import com.calypso.service.ClinicService;
+import com.calypso.service.CalypsoService;
 
 /**
  * @author Juergen Hoeller
@@ -38,23 +38,23 @@ import com.calypso.service.ClinicService;
 @RequestMapping("/api")
 public class VisitRestController {
 
-    private final ClinicService clinicService;
+    private final CalypsoService calypsoService;
 
     @Autowired
-    public VisitRestController(ClinicService clinicService) {
-        this.clinicService = clinicService;
+    public VisitRestController(CalypsoService calypsoService) {
+        this.calypsoService = calypsoService;
     }
 
 	// Spring MVC calls method loadPetWithVisit(...) before processNewVisitForm is called
     @RequestMapping(value = "/pets/{petId}/visits", method = RequestMethod.POST)
-    public Visit createVisit(@PathVariable int ownerId, @PathVariable int petId, @Valid Visit visit) {
-           this.clinicService.saveVisit(visit);
+    public Visit createVisit(@PathVariable int businessPartnerId, @PathVariable int petId, @Valid Visit visit) {
+           this.calypsoService.saveVisit(visit);
            return visit;
     }
 
     @RequestMapping(value = "/pets/{petId}/visits", method = RequestMethod.GET)
     public List<Visit> showVisits(@PathVariable int petId) {
-        return this.clinicService.findPetById(petId).getVisits();
+        return this.calypsoService.findPetById(petId).getVisits();
     }
 
 }

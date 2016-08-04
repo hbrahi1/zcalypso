@@ -19,7 +19,7 @@ import java.util.Collection;
 
 import org.springframework.dao.DataAccessException;
 
-import com.calypso.model.Owner;
+import com.calypso.model.BusinessPartner;
 import com.calypso.model.Pet;
 import com.calypso.model.PetType;
 import com.calypso.model.Vet;
@@ -30,11 +30,11 @@ import com.calypso.model.Visit;
  * Mostly used as a facade for all controllers
  *
  */
-public interface ClinicService {
+public interface CalypsoService {
 
     Collection<PetType> findPetTypes() throws DataAccessException;
 
-    Owner findOwnerById(int id) throws DataAccessException;
+    BusinessPartner findBusinessPartnerById(int id) throws DataAccessException;
 
     Pet findPetById(int id) throws DataAccessException;
     
@@ -46,9 +46,9 @@ public interface ClinicService {
 
     Collection<Vet> findVets() throws DataAccessException;
 
-    void saveOwner(Owner owner) throws DataAccessException;
+    void saveBusinessPartner(BusinessPartner businessPartner) throws DataAccessException;
 
-    Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException;
+    Collection<BusinessPartner> findBusinessPartnerByLastName(String lastName) throws DataAccessException;
 
 	Collection<Pet> findPets() throws DataAccessException;
 

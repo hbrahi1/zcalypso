@@ -24,11 +24,11 @@ import javax.persistence.Query;
 import org.springframework.orm.hibernate3.support.OpenSessionInViewFilter;
 import org.springframework.stereotype.Repository;
 
-import com.calypso.model.Owner;
-import com.calypso.repository.OwnerRepository;
+import com.calypso.model.BusinessPartner;
+import com.calypso.repository.BusinessPartnerRepository;
 
 /**
- * JPA implementation of the {@link OwnerRepository} interface.
+ * JPA implementation of the {@link BusinessPartnerRepository} interface.
  *
  * @author Mike Keith
  * @author Rod Johnson
@@ -37,45 +37,45 @@ import com.calypso.repository.OwnerRepository;
  * @since 22.4.2006
  */
 @Repository
-public class JpaOwnerRepositoryImpl implements OwnerRepository {
+public class JpaBusinessPartnerRepositoryImpl implements BusinessPartnerRepository {
 
     @PersistenceContext
     private EntityManager em;
 
 
     /**
-     * Important: in the current version of this method, we load Owners with all their Pets and Visits while 
+     * Important: in the current version of this method, we load BusinessPartners with all their Pets and Visits while 
      * we do not need Visits at all and we only need one property from the Pet objects (the 'name' property).
      * There are some ways to improve it such as:
      * - creating a Ligtweight class (example here: https://community.jboss.org/wiki/LightweightClass)
      * - Turning on lazy-loading and using {@link OpenSessionInViewFilter}
      */
     @SuppressWarnings("unchecked")
-    public Collection<Owner> findByLastName(String lastName) {
-        // using 'join fetch' because a single query should load both owners and pets
-        // using 'left join fetch' because it might happen that an owner does not have pets yet
-        Query query = this.em.createQuery("SELECT DISTINCT owner FROM Owner owner left join fetch owner.pets WHERE owner.lastName LIKE :lastName");
+    public Collection<BusinessPartner> findByLastName(String lastName) {
+        // using 'join fetch' because a single query should load both businessPartners and pets
+        // using 'left join fetch' because it might happen that an businessPartner does not have pets yet
+        Query query = this.em.createQuery("SELECT DISTINCT businessPartner FROM BusinessPartner businessPartner left join fetch businessPartner.pets WHERE businessPartner.lastName LIKE :lastName");
         query.setParameter("lastName", lastName + "%");
         return query.getResultList();
     }
 
     @Override
-    public Owner findById(int id) {
-        // using 'join fetch' because a single query should load both owners and pets
-        // using 'left join fetch' because it might happen that an owner does not have pets yet
-        Query query = this.em.createQuery("SELECT owner FROM Owner owner left join fetch owner.pets WHERE owner.id =:id");
+    public BusinessPartner findById(int id) {
+        // using 'join fetch' because a single query should load both businessPartners and pets
+        // using 'left join fetch' because it might happen that an businessPartner does not have pets yet
+        Query query = this.em.createQuery("SELECT businessPartner FROM BusinessPartner businessPartner left join fetch businessPartner.pets WHERE businessPartner.id =:id");
         query.setParameter("id", id);
-        return (Owner) query.getSingleResult();
+        return (BusinessPartner) query.getSingleResult();
     }
 
 
     @Override
-    public void save(Owner owner) {
-    	if (owner.getId() == null) {
-    		this.em.persist(owner);     		
+    public void save(BusinessPartner businessPartner) {
+    	if (businessPartner.getId() == null) {
+    		this.em.persist(businessPartner);     		
     	}
     	else {
-    		this.em.merge(owner);    
+    		this.em.merge(businessPartner);    
     	}
 
     }

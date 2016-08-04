@@ -22,7 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.calypso.model.Vets;
-import com.calypso.service.ClinicService;
+import com.calypso.service.CalypsoService;
 
 /**
  * @author Juergen Hoeller
@@ -33,12 +33,12 @@ import com.calypso.service.ClinicService;
 @Controller
 public class VetController {
 
-    private final ClinicService clinicService;
+    private final CalypsoService calypsoService;
 
 
     @Autowired
-    public VetController(ClinicService clinicService) {
-        this.clinicService = clinicService;
+    public VetController(CalypsoService calypsoService) {
+        this.calypsoService = calypsoService;
     }
 
     @RequestMapping("/vets")
@@ -46,7 +46,7 @@ public class VetController {
         // Here we are returning an object of type 'Vets' rather than a collection of Vet objects 
         // so it is simpler for Object-Xml mapping
         Vets vets = new Vets();
-        vets.getVetList().addAll(this.clinicService.findVets());
+        vets.getVetList().addAll(this.calypsoService.findVets());
         model.put("vets", vets);
         return "vets/vetList";
     }

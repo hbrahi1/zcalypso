@@ -33,7 +33,7 @@ public class PetValidator {
         // name validaation
         if (!StringUtils.hasLength(name)) {
             errors.rejectValue("name", "required", "required");
-        } else if (pet.isNew() && pet.getOwner().getPet(name, true) != null) {
+        } else if (pet.isNew() && pet.getBusinessPartner().getPet(name, true) != null) {
             errors.rejectValue("name", "duplicate", "already exists");
         }
         

@@ -1,9 +1,9 @@
-var Owner = ['$resource','context', function($resource, context) {
-	return $resource(context + '/api/owners/:id');
+var BusinessPartner = ['$resource','context', function($resource, context) {
+	return $resource(context + '/api/businessPartners/:id');
 }];
 
-var OwnerPet = ['$resource','context', function($resource, context) {
-	return $resource(context + '/api/owners/:ownerId/pets', {ownerId : '@ownerId'});
+var BusinessPartnerPet = ['$resource','context', function($resource, context) {
+	return $resource(context + '/api/businessPartners/:businessPartnerId/pets', {businessPartnerId : '@businessPartnerId'});
 }];
 
 var Pet = ['$resource','context', function($resource, context) {
@@ -34,18 +34,18 @@ var MockService = ['$httpBackend', '$http', '$q', 'context', function($httpBacke
 				$q.all([
 				        $http.get(context + '/static/mock-data/pets.json'),
 				        $http.get(context + '/static/mock-data/vets.json'),
-				        $http.get(context + '/static/mock-data/owners.json'),
-				        $http.get(context + '/static/mock-data/owner_one.json'),
+				        $http.get(context + '/static/mock-data/businessPartners.json'),
+				        $http.get(context + '/static/mock-data/businessPartner_one.json'),
 				        $http.get(context + '/static/mock-data/pettypes.json'),
 				]).then(function(data) {
 					console.log("Mocking /api/pets");
 					$httpBackend.whenGET(context + '/api/pets').respond(data[0].data);
 					console.log("Mocking /api/vets");
 					$httpBackend.whenGET(context + '/api/vets').respond(data[1].data);
-					console.log("Mocking /api/owners");
-					$httpBackend.whenGET(context + '/api/owners').respond(data[2].data);
-					console.log("Mocking /api/owners/1");
-					$httpBackend.whenGET(context + '/api/owners/1').respond(data[3].data);
+					console.log("Mocking /api/businessPartners");
+					$httpBackend.whenGET(context + '/api/businessPartners').respond(data[2].data);
+					console.log("Mocking /api/businessPartners/1");
+					$httpBackend.whenGET(context + '/api/businessPartners/1').respond(data[3].data);
 					console.log("Mocking /api/pets/types");
 					$httpBackend.whenGET(context + '/api/pets/types').respond(data[4].data);
 					

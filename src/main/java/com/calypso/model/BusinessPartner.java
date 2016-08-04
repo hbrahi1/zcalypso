@@ -34,7 +34,7 @@ import org.springframework.beans.support.PropertyComparator;
 import org.springframework.core.style.ToStringCreator;
 
 /**
- * Simple JavaBean domain object representing an owner.
+ * Simple JavaBean domain object representing an businessPartner.
  *
  * @author Ken Krebs
  * @author Juergen Hoeller
@@ -42,8 +42,8 @@ import org.springframework.core.style.ToStringCreator;
  * @author Michael Isvy
  */
 @Entity
-@Table(name = "owners")
-public class Owner extends Person {
+@Table(name = "businessPartners")
+public class BusinessPartner extends Person {
     @Column(name = "address")
     @NotEmpty
     private String address;
@@ -57,7 +57,7 @@ public class Owner extends Person {
     @Digits(fraction = 0, integer = 10)
     private String telephone;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessPartner")
     private Set<Pet> pets;
 
 
@@ -104,11 +104,11 @@ public class Owner extends Person {
 
     public void addPet(Pet pet) {
         getPetsInternal().add(pet);
-        pet.setOwner(this);
+        pet.setBusinessPartner(this);
     }
 
     /**
-     * Return the Pet with the given name, or null if none found for this Owner.
+     * Return the Pet with the given name, or null if none found for this BusinessPartner.
      *
      * @param name to test
      * @return true if pet name is already in use
@@ -118,7 +118,7 @@ public class Owner extends Person {
     }
 
     /**
-     * Return the Pet with the given name, or null if none found for this Owner.
+     * Return the Pet with the given name, or null if none found for this BusinessPartner.
      *
      * @param name to test
      * @return true if pet name is already in use

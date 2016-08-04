@@ -21,27 +21,27 @@ import static org.junit.Assert.assertNull;
 import org.junit.Test;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.calypso.model.Owner;
+import com.calypso.model.BusinessPartner;
 import com.calypso.model.Pet;
 
 /**
- * JUnit test for the {@link Owner} class.
+ * JUnit test for the {@link BusinessPartner} class.
  *
  * @author Ken Krebs
  */
-public class OwnerTests {
+public class BusinessPartnerTests {
 
     @Test
     @Transactional
     public void testHasPet() {
-        Owner owner = new Owner();
+        BusinessPartner businessPartner = new BusinessPartner();
         Pet fido = new Pet();
         fido.setName("Fido");
-        assertNull(owner.getPet("Fido"));
-        assertNull(owner.getPet("fido"));
-        owner.addPet(fido);
-        assertEquals(fido, owner.getPet("Fido"));
-        assertEquals(fido, owner.getPet("fido"));
+        assertNull(businessPartner.getPet("Fido"));
+        assertNull(businessPartner.getPet("fido"));
+        businessPartner.addPet(fido);
+        assertEquals(fido, businessPartner.getPet("Fido"));
+        assertEquals(fido, businessPartner.getPet("fido"));
     }
 
 }

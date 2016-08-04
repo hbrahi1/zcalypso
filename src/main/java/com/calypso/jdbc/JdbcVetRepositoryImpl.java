@@ -56,9 +56,9 @@ public class JdbcVetRepositoryImpl implements VetRepository {
     }
 
     /**
-     * Refresh the cache of Vets that the ClinicService is holding.
+     * Refresh the cache of Vets that the CalypsoService is holding.
      *
-     * @see com.calypso.model.service.ClinicService#findVets()
+     * @see com.calypso.model.CalypsoService.ClinicService#findVets()
      */
     @Override
     public Collection<Vet> findAll() throws DataAccessException {
