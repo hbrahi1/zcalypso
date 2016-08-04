@@ -73,8 +73,8 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
         }
     }
 
-    public void deletePet(int id) throws DataAccessException {
-        this.jdbcTemplate.update("DELETE FROM pets WHERE id=?", id);
+    public void deleteContact(int id) throws DataAccessException {
+        this.jdbcTemplate.update("DELETE FROM contacts WHERE id=?", id);
     }
 
 
@@ -86,13 +86,13 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
                 .addValue("id", visit.getId())
                 .addValue("visit_date", visit.getDate().toDate())
                 .addValue("description", visit.getDescription())
-                .addValue("pet_id", visit.getPet().getId());
+                .addValue("contact_id", visit.getContact().getId());
     }
 
     @Override
-    public List<Visit> findByPetId(Integer petId) {
+    public List<Visit> findByContactId(Integer contactId) {
         final List<Visit> visits = this.jdbcTemplate.query(
-                "SELECT id, visit_date, description FROM visits WHERE pet_id=?",
+                "SELECT id, visit_date, description FROM visits WHERE contact_id=?",
                 new ParameterizedRowMapper<Visit>() {
                     @Override
                     public Visit mapRow(ResultSet rs, int row) throws SQLException {
@@ -104,7 +104,7 @@ public class JdbcVisitRepositoryImpl implements VisitRepository {
                         return visit;
                     }
                 },
-                petId);
+                contactId);
         return visits;
     }
 

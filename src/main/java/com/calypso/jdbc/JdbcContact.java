@@ -15,15 +15,15 @@
  */
 package com.calypso.jdbc;
 
-import com.calypso.model.Pet;
+import com.calypso.model.Contact;
 
 /**
- * Subclass of Pet that carries temporary id properties which are only relevant for a JDBC implementation of the
+ * Subclass of Contact that carries temporary id properties which are only relevant for a JDBC implementation of the
  * CalypsoService.
  *
  * @author Juergen Hoeller
  */
-class JdbcPet extends Pet {
+class JdbcContact extends Contact {
 
     private int typeId;
 

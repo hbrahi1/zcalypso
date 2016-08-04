@@ -8,7 +8,7 @@
       <div class="media-body">
         <div class="pull-right stats stats-md">
           <ul>
-            <li>{{currentBusinessPartner.pets.length || 0}}<span>Pets</span></li>
+            <li>{{currentBusinessPartner.contacts.length || 0}}<span>Contacts</span></li>
             <li>{{currentBusinessPartner.visits.length || 0}}<span>Visits</span></li>
           </ul>
         </div>
@@ -77,12 +77,12 @@
   </div>
 </section>
 
-<!-- Pets -->
-<section id="pets" class="sections sections-narrow">
+<!-- Contacts -->
+<section id="contacts" class="sections sections-narrow">
   <div class="container">
     <div class="action-wrappers pull-right">
-      <button class="btn btn-primary pull-right action-item" data-toggle="modal" data-target="#petModal" data-ng-click="addPet()">
-        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add New Pet
+      <button class="btn btn-primary pull-right action-item" data-toggle="modal" data-target="#contactModal" data-ng-click="addContact()">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add New Contact
       </button>
       <div class="pull-right action-item">
         View as
@@ -96,21 +96,21 @@
         </div>
       </div>
     </div>
-    <h2 class="sub-header">BusinessPartner's Pets</h2>
+    <h2 class="sub-header">BusinessPartner's Contacts</h2>
     <div class="row thumbnail-wrapper">
-      <div data-ng-repeat="pet in currentBusinessPartner.pets" class="col-md-3">
+      <div data-ng-repeat="contact in currentBusinessPartner.contacts" class="col-md-3">
         <div class="thumbnail">
-          <img data-ng-src="images/pets/pet{{pet.id % 10 + 1}}.jpg" class="img-circle" alt="Generic placeholder image">
+          <img data-ng-src="images/contacts/contact{{contact.id % 10 + 1}}.jpg" class="img-circle" alt="Generic placeholder image">
           <div class="caption">
-            <h3 class="caption-heading" data-ng-bind="pet.name">Basil</h3>
-            <p class="caption-meta" data-ng-bind="pet.birthdate">08 August 2012</p>
-            <p class="caption-meta"><span class="caption-label" data-ng-bind="pet.type.name">Hamster</span></p>
+            <h3 class="caption-heading" data-ng-bind="contact.name">Basil</h3>
+            <p class="caption-meta" data-ng-bind="contact.birthdate">08 August 2012</p>
+            <p class="caption-meta"><span class="caption-label" data-ng-bind="contact.type.name">Hamster</span></p>
           </div>
           <div class="action-bar">
-            <button class="btn btn-default" data-toggle="modal" data-target="#petModal" data-ng-click="editPet(pet.id)">
-              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit Pet
+            <button class="btn btn-default" data-toggle="modal" data-target="#contactModal" data-ng-click="editContact(contact.id)">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit Contact
             </button>
-            <button class="btn btn-default" data-toggle="modal" data-target="#addPetVisitModal">
+            <button class="btn btn-default" data-toggle="modal" data-target="#addContactVisitModal">
               <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Visit
             </button>
           </div>
@@ -120,8 +120,8 @@
   </div>
 </section>
 
-<!-- Pets -->
-<section id="pets" class="sections sections-bottom-nav sections-darker">
+<!-- Contacts -->
+<section id="contacts" class="sections sections-bottom-nav sections-darker">
   <div class="container">
     <ul class="pager pager-link pull-left">
       <li><a data-ui-sref="businessPartners"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Back to BusinessPartners List</a></li>
@@ -135,7 +135,7 @@
 
 <!-- Add BusinessPartner modal -->
 <data-ng-include src="'components/_partials/_modal_add_businessPartner.html'"></data-ng-include>
-<!-- Add Pet modal -->
-<data-ng-include src="'components/_partials/_modal_add_pet.html'"></data-ng-include>
-<!-- Add Pet Visit modal -->
-<data-ng-include src="'components/_partials/_modal_add_pet_visit.html'"></data-ng-include>
+<!-- Add Contact modal -->
+<data-ng-include src="'components/_partials/_modal_add_contact.html'"></data-ng-include>
+<!-- Add Contact Visit modal -->
+<data-ng-include src="'components/_partials/_modal_add_contact_visit.html'"></data-ng-include>

@@ -23,11 +23,11 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
 
-import com.calypso.model.PetType;
+import com.calypso.model.ContactType;
 import com.calypso.service.CalypsoService;
 
 /**
- * Instructs Spring MVC on how to parse and print elements of type 'PetType'. Starting from Spring 3.0, Formatters have
+ * Instructs Spring MVC on how to parse and print elements of type 'ContactType'. Starting from Spring 3.0, Formatters have
  * come as an improvement in comparison to legacy PropertyEditors. See the following links for more details: - The
  * Spring ref doc: http://static.springsource.org/spring/docs/current/spring-framework-reference/html/validation.html#format-Formatter-SPI
  * - A nice blog entry from Gordon Dickens: http://gordondickens.com/wordpress/2010/09/30/using-spring-3-0-custom-type-converter/
@@ -38,25 +38,25 @@ import com.calypso.service.CalypsoService;
  * @author Juergen Hoeller
  * @author Michael Isvy
  */
-public class PetTypeFormatter implements Formatter<PetType> {
+public class ContactTypeFormatter implements Formatter<ContactType> {
 
     private final CalypsoService calypsoService;
 
 
     @Autowired
-    public PetTypeFormatter(CalypsoService calypsoService) {
+    public ContactTypeFormatter(CalypsoService calypsoService) {
         this.calypsoService = calypsoService;
     }
 
     @Override
-    public String print(PetType petType, Locale locale) {
-        return petType.getName();
+    public String print(ContactType contactType, Locale locale) {
+        return contactType.getName();
     }
 
     @Override
-    public PetType parse(String text, Locale locale) throws ParseException {
-        Collection<PetType> findPetTypes = this.calypsoService.findPetTypes();
-        for (PetType type : findPetTypes) {
+    public ContactType parse(String text, Locale locale) throws ParseException {
+        Collection<ContactType> findContactTypes = this.calypsoService.findContactTypes();
+        for (ContactType type : findContactTypes) {
             if (type.getName().equals(text)) {
                 return type;
             }

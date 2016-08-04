@@ -1,4 +1,4 @@
-<section id="pets" class="sections sections-narrow">
+<section id="contacts" class="sections sections-narrow">
   <div class="container">
     <div class="action-items pull-right">
       <div class="action-item pull-right">
@@ -16,14 +16,14 @@
         </div>
       </div>
     </div>
-    <h2 class="sub-header">Pets</h2>
+    <h2 class="sub-header">Contacts</h2>
     <div class="row">
-      <div class="col-md-3" data-ng-repeat="pet in pets | filter:search">
+      <div class="col-md-3" data-ng-repeat="contact in contacts | filter:search">
         <div class="thumbnail">
-          <a href="#"><img data-ng-src="images/pets/pet{{pet.id % 10 + 1}}.jpg" alt="Generic placeholder image" class="img-circle"></a>
+          <a href="#"><img data-ng-src="images/contacts/contact{{contact.id % 10 + 1}}.jpg" alt="Generic placeholder image" class="img-circle"></a>
           <div class="caption">
-            <h3 class="caption-heading"><a href="#" data-ng-bind="pet.name"></a></h3>
-            <p data-ng-bind="pet.type.name"></p>
+            <h3 class="caption-heading"><a href="#" data-ng-bind="contact.name"></a></h3>
+            <p data-ng-bind="contact.type.name"></p>
           </div>
         </div>
       </div>

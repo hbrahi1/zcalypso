@@ -58,7 +58,7 @@ public class BusinessPartner extends Person {
     private String telephone;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "businessPartner")
-    private Set<Pet> pets;
+    private Set<Contact> contacts;
 
 
     public String getAddress() {
@@ -85,52 +85,52 @@ public class BusinessPartner extends Person {
         this.telephone = telephone;
     }
 
-    protected void setPetsInternal(Set<Pet> pets) {
-        this.pets = pets;
+    protected void setContactsInternal(Set<Contact> contacts) {
+        this.contacts = contacts;
     }
 
-    protected Set<Pet> getPetsInternal() {
-        if (this.pets == null) {
-            this.pets = new HashSet<Pet>();
+    protected Set<Contact> getContactsInternal() {
+        if (this.contacts == null) {
+            this.contacts = new HashSet<Contact>();
         }
-        return this.pets;
+        return this.contacts;
     }
 
-    public List<Pet> getPets() {
-        List<Pet> sortedPets = new ArrayList<Pet>(getPetsInternal());
-        PropertyComparator.sort(sortedPets, new MutableSortDefinition("name", true, true));
-        return Collections.unmodifiableList(sortedPets);
+    public List<Contact> getContacts() {
+        List<Contact> sortedContacts = new ArrayList<Contact>(getContactsInternal());
+        PropertyComparator.sort(sortedContacts, new MutableSortDefinition("name", true, true));
+        return Collections.unmodifiableList(sortedContacts);
     }
 
-    public void addPet(Pet pet) {
-        getPetsInternal().add(pet);
-        pet.setBusinessPartner(this);
-    }
-
-    /**
-     * Return the Pet with the given name, or null if none found for this BusinessPartner.
-     *
-     * @param name to test
-     * @return true if pet name is already in use
-     */
-    public Pet getPet(String name) {
-        return getPet(name, false);
+    public void addContact(Contact contact) {
+        getContactsInternal().add(contact);
+        contact.setBusinessPartner(this);
     }
 
     /**
-     * Return the Pet with the given name, or null if none found for this BusinessPartner.
+     * Return the Contact with the given name, or null if none found for this BusinessPartner.
      *
      * @param name to test
-     * @return true if pet name is already in use
+     * @return true if contact name is already in use
      */
-    public Pet getPet(String name, boolean ignoreNew) {
+    public Contact getContact(String name) {
+        return getContact(name, false);
+    }
+
+    /**
+     * Return the Contact with the given name, or null if none found for this BusinessPartner.
+     *
+     * @param name to test
+     * @return true if contact name is already in use
+     */
+    public Contact getContact(String name, boolean ignoreNew) {
         name = name.toLowerCase();
-        for (Pet pet : getPetsInternal()) {
-            if (!ignoreNew || !pet.isNew()) {
-                String compName = pet.getName();
+        for (Contact contact : getContactsInternal()) {
+            if (!ignoreNew || !contact.isNew()) {
+                String compName = contact.getName();
                 compName = compName.toLowerCase();
                 if (compName.equals(name)) {
-                    return pet;
+                    return contact;
                 }
             }
         }

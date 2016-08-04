@@ -2,9 +2,7 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a class="navbar-brand" href="#" data-ng-click="goHome()">
-        <img alt="Pet Clinic Brand" height="27" width="auto" src="images/logo.png">
-      </a>
+      <a class="navbar-brand" href="#" data-ng-click="goHome()">Home</a>
       <button class="navbar-toggle navbar-toggle-left collapsed" type="button" data-toggle="collapse" data-target="#nav-menu">
         <span class="sr-only">Toggle navigation</span>
         <span class="glyphicon glyphicon-triangle-bottom"></span>
@@ -15,8 +13,8 @@
     <div id="nav-menu" class="navbar-collapse navbar-left collapse">
       <ul class="nav navbar-nav navbar-menu">
         <li data-ng-class="$state.is('dashboard') ? 'active' : ''"><a href="#" data-ng-click="goHome()">Dashboard</a></li>
-        <li data-ng-class="$state.is('businessPartners') ? 'active' : ''"><a data-ui-sref="businessPartners">BusinessPartners</a></li>
-        <li data-ng-class="$state.is('pets') ? 'active' : ''"><a data-ui-sref="pets">Pets</a></li>
+        <li data-ng-class="$state.is('businessPartners') ? 'active' : ''"><a data-ui-sref="businessPartners">Organizations</a></li>
+        <li data-ng-class="$state.is('contacts') ? 'active' : ''"><a data-ui-sref="contacts">Contacts</a></li>
         <li data-ng-class="$state.is('vets') ? 'active' : ''"><a data-ui-sref="vets">Vets</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->

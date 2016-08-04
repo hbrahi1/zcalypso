@@ -14,7 +14,7 @@
            diskExpiryThreadIntervalSeconds="1"
            memoryStoreEvictionPolicy="LRU"/>
            
-    <cache name="pets"
+    <cache name="contacts"
            timeToLiveSeconds="60"
            maxElementsInMemory="100"
            eternal="false"

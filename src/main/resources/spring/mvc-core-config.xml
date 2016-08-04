@@ -52,7 +52,7 @@
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="formatters">
             <set>
-                <bean class="com.calypso.web.PetTypeFormatter"/>
+                <bean class="com.calypso.web.ContactTypeFormatter"/>
             </set>
         </property>
     </bean>

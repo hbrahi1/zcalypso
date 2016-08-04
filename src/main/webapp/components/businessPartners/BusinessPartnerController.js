@@ -23,16 +23,16 @@ var BusinessPartnerDetailsController = ['$scope','$rootScope','$stateParams','Bu
 		BusinessPartner.save(businessPartner);
 	}
 	
-	$scope.addPet = function() {
-		$scope.petFormHeader = "Add a new Pet";
-		$scope.currentPet = {type:{}};
+	$scope.addContact = function() {
+		$scope.contactFormHeader = "Add a new Contact";
+		$scope.currentContact = {type:{}};
 	}
 	
-	$scope.editPet = function(id) {
-		$scope.petFormHeader = "Edit Pet";
-		for(i = 0;i < $scope.currentBusinessPartner.pets.length; i++) {
-			if($scope.currentBusinessPartner.pets[i].id == id) {
-				$scope.currentPet = $scope.currentBusinessPartner.pets[i];
+	$scope.editContact = function(id) {
+		$scope.contactFormHeader = "Edit Contact";
+		for(i = 0;i < $scope.currentBusinessPartner.contacts.length; i++) {
+			if($scope.currentBusinessPartner.contacts[i].id == id) {
+				$scope.currentContact = $scope.currentBusinessPartner.contacts[i];
 				break;
 			}
 		}
@@ -42,7 +42,7 @@ var BusinessPartnerDetailsController = ['$scope','$rootScope','$stateParams','Bu
 
 var AddBusinessPartnerController = ['$scope','BusinessPartner', function($scope,BusinessPartner) {
 
-	$scope.businessPartner={id:0,pets:[]};
+	$scope.businessPartner={id:0,contacts:[]};
 
 	$scope.addBusinessPartner = function(){
 		BusinessPartner.save($scope.businessPartner);

@@ -33,8 +33,8 @@ var MainController =  ['$scope','$rootScope','$state','$sessionStorage', 'contex
 		'url' : '#services',
 		'font' : 'fa fa-eyedropper'
 	}, {
-		'name' : 'Pets',
-		'url' : '#pets',
+		'name' : 'Contacts',
+		'url' : '#contacts',
 		'font' : 'fa fa-paw'
 	}, {
 		'name' : 'Veterinarians',
@@ -48,7 +48,7 @@ var MainController =  ['$scope','$rootScope','$state','$sessionStorage', 'contex
 	
 	$scope.context = context;
 	
-	$scope.footerText = '© ' + new Date().getFullYear() + ' Pet Clinic, A Spring Framework Demonstration';
+	$scope.footerText = '© ' + new Date().getFullYear() + ' Contact Clinic, A Spring Framework Demonstration';
 	
 	$rootScope.$state = $state;
 	

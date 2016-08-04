@@ -20,8 +20,8 @@ import java.util.Collection;
 import org.springframework.dao.DataAccessException;
 
 import com.calypso.model.BusinessPartner;
-import com.calypso.model.Pet;
-import com.calypso.model.PetType;
+import com.calypso.model.Contact;
+import com.calypso.model.ContactType;
 import com.calypso.model.Vet;
 import com.calypso.model.Visit;
 
@@ -32,15 +32,15 @@ import com.calypso.model.Visit;
  */
 public interface CalypsoService {
 
-    Collection<PetType> findPetTypes() throws DataAccessException;
+    Collection<ContactType> findContactTypes() throws DataAccessException;
 
     BusinessPartner findBusinessPartnerById(int id) throws DataAccessException;
 
-    Pet findPetById(int id) throws DataAccessException;
+    Contact findContactById(int id) throws DataAccessException;
     
-    Collection<Pet> findPetByName(String name) throws DataAccessException;
+    Collection<Contact> findContactByName(String name) throws DataAccessException;
 
-    void savePet(Pet pet) throws DataAccessException;
+    void saveContact(Contact contact) throws DataAccessException;
 
     void saveVisit(Visit visit) throws DataAccessException;
 
@@ -50,6 +50,6 @@ public interface CalypsoService {
 
     Collection<BusinessPartner> findBusinessPartnerByLastName(String lastName) throws DataAccessException;
 
-	Collection<Pet> findPets() throws DataAccessException;
+	Collection<Contact> findContacts() throws DataAccessException;
 
 }

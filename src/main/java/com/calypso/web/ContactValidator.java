@@ -18,32 +18,32 @@ package com.calypso.web;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 
-import com.calypso.model.Pet;
+import com.calypso.model.Contact;
 
 /**
- * <code>Validator</code> for <code>Pet</code> forms.
+ * <code>Validator</code> for <code>Contact</code> forms.
  *
  * @author Ken Krebs
  * @author Juergen Hoeller
  */
-public class PetValidator {
+public class ContactValidator {
 
-    public void validate(Pet pet, Errors errors) {
-        String name = pet.getName();
+    public void validate(Contact contact, Errors errors) {
+        String name = contact.getName();
         // name validaation
         if (!StringUtils.hasLength(name)) {
             errors.rejectValue("name", "required", "required");
-        } else if (pet.isNew() && pet.getBusinessPartner().getPet(name, true) != null) {
+        } else if (contact.isNew() && contact.getBusinessPartner().getContact(name, true) != null) {
             errors.rejectValue("name", "duplicate", "already exists");
         }
         
         // type valication
-        if (pet.isNew() && pet.getType() == null) {
+        if (contact.isNew() && contact.getType() == null) {
             errors.rejectValue("type", "required", "required");
         }
         
      // type valication
-        if (pet.getBirthDate()==null) {
+        if (contact.getBirthDate()==null) {
             errors.rejectValue("birthDate", "required", "required");
         }
     }

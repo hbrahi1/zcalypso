@@ -21,19 +21,19 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 
-import com.calypso.model.Pet;
-import com.calypso.model.PetType;
-import com.calypso.repository.PetRepository;
+import com.calypso.model.Contact;
+import com.calypso.model.ContactType;
+import com.calypso.repository.ContactRepository;
 
 /**
- * Spring Data JPA specialization of the {@link PetRepository} interface
+ * Spring Data JPA specialization of the {@link ContactRepository} interface
  *
  * @author Michael Isvy
  * @since 15.1.2013
  */
-public interface SpringDataPetRepository extends PetRepository, Repository<Pet, Integer> {
+public interface SpringDataContactRepository extends ContactRepository, Repository<Contact, Integer> {
 
     @Override
-    @Query("SELECT ptype FROM PetType ptype ORDER BY ptype.name")
-    List<PetType> findPetTypes() throws DataAccessException;
+    @Query("SELECT ptype FROM ContactType ptype ORDER BY ptype.name")
+    List<ContactType> findContactTypes() throws DataAccessException;
 }

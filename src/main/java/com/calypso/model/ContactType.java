@@ -17,12 +17,13 @@ package com.calypso.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import com.calypso.model.NamedEntity;
 
 /**
  * @author Juergen Hoeller
  */
 @Entity
 @Table(name = "types")
-public class PetType extends NamedEntity {
+public class ContactType extends NamedEntity {
 
 }

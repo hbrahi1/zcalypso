@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.calypso.model.Pet;
+import com.calypso.model.Contact;
 import com.calypso.model.Visit;
 import com.calypso.service.CalypsoService;
 
@@ -59,39 +59,39 @@ public class VisitController {
      *  Called before each and every @RequestMapping annotated method.
      *  2 goals:
      *  - Make sure we always have fresh data
-     *  - Since we do not use the session scope, make sure that Pet object always has an id 
+     *  - Since we do not use the session scope, make sure that Contact object always has an id 
      *    (Even though id is not part of the form fields)
-     * @param petId
-     * @return Pet
+     * @param contactId
+     * @return Contact
      */
     @ModelAttribute("visit")
-    public Visit loadPetWithVisit(@PathVariable("petId") int petId) {
-        Pet pet = this.calypsoService.findPetById(petId);
+    public Visit loadContactWithVisit(@PathVariable("contactId") int contactId) {
+        Contact contact = this.calypsoService.findContactById(contactId);
         Visit visit = new Visit();
-        pet.addVisit(visit);  
+        contact.addVisit(visit);  
         return visit;
     }
 
-	// Spring MVC calls method loadPetWithVisit(...) before initNewVisitForm is called
-    @RequestMapping(value = "/businessPartners/*/pets/{petId}/visits/new", method = RequestMethod.GET)
-    public String initNewVisitForm(@PathVariable("petId") int petId, Map<String, Object> model) {
-        return "pets/createOrUpdateVisitForm";
+	// Spring MVC calls method loadContactWithVisit(...) before initNewVisitForm is called
+    @RequestMapping(value = "/businessPartners/*/contacts/{contactId}/visits/new", method = RequestMethod.GET)
+    public String initNewVisitForm(@PathVariable("contactId") int contactId, Map<String, Object> model) {
+        return "contacts/createOrUpdateVisitForm";
     }
 
-	// Spring MVC calls method loadPetWithVisit(...) before processNewVisitForm is called
-    @RequestMapping(value = "/businessPartners/{businessPartnerId}/pets/{petId}/visits/new", method = RequestMethod.POST)
+	// Spring MVC calls method loadContactWithVisit(...) before processNewVisitForm is called
+    @RequestMapping(value = "/businessPartners/{businessPartnerId}/contacts/{contactId}/visits/new", method = RequestMethod.POST)
     public String processNewVisitForm(@Valid Visit visit, BindingResult result) {
         if (result.hasErrors()) {
-            return "pets/createOrUpdateVisitForm";
+            return "contacts/createOrUpdateVisitForm";
         } else {
             this.calypsoService.saveVisit(visit);
             return "redirect:/businessPartners/{businessPartnerId}";
         }
     }
 
-    @RequestMapping(value = "/businessPartners/*/pets/{petId}/visits", method = RequestMethod.GET)
-    public String showVisits(@PathVariable int petId, Map<String, Object> model) {
-        model.put("visits", this.calypsoService.findPetById(petId).getVisits());
+    @RequestMapping(value = "/businessPartners/*/contacts/{contactId}/visits", method = RequestMethod.GET)
+    public String showVisits(@PathVariable int contactId, Map<String, Object> model) {
+        model.put("visits", this.calypsoService.findContactById(contactId).getVisits());
         return "visitList";
     }
 

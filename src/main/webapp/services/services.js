@@ -2,12 +2,12 @@ var BusinessPartner = ['$resource','context', function($resource, context) {
 	return $resource(context + '/api/businessPartners/:id');
 }];
 
-var BusinessPartnerPet = ['$resource','context', function($resource, context) {
-	return $resource(context + '/api/businessPartners/:businessPartnerId/pets', {businessPartnerId : '@businessPartnerId'});
+var BusinessPartnerContact = ['$resource','context', function($resource, context) {
+	return $resource(context + '/api/businessPartners/:businessPartnerId/contacts', {businessPartnerId : '@businessPartnerId'});
 }];
 
-var Pet = ['$resource','context', function($resource, context) {
-	return $resource(context + '/api/pets/:id');
+var Contact = ['$resource','context', function($resource, context) {
+	return $resource(context + '/api/contacts/:id');
 }];
 
 var Vet = ['$resource','context', function($resource, context) {
@@ -15,11 +15,11 @@ var Vet = ['$resource','context', function($resource, context) {
 }];
 
 var Visit = ['$resource','context', function($resource, context) {
-	return $resource(context + '/api/pets/:petId/visits', {petId : '@id'});
+	return $resource(context + '/api/contacts/:contactId/visits', {contactId : '@id'});
 }];
 
-var PetType = ['$resource','context', function($resource, context) {
-	return $resource(context + '/api/pets/types');
+var ContactType = ['$resource','context', function($resource, context) {
+	return $resource(context + '/api/contacts/types');
 }];
 
 var MockService = ['$httpBackend', '$http', '$q', 'context', function($httpBackend, $http, $q, context) {
@@ -32,22 +32,22 @@ var MockService = ['$httpBackend', '$http', '$q', 'context', function($httpBacke
 			if(useMockData) {
 				$q.defer();
 				$q.all([
-				        $http.get(context + '/static/mock-data/pets.json'),
+				        $http.get(context + '/static/mock-data/contacts.json'),
 				        $http.get(context + '/static/mock-data/vets.json'),
 				        $http.get(context + '/static/mock-data/businessPartners.json'),
 				        $http.get(context + '/static/mock-data/businessPartner_one.json'),
-				        $http.get(context + '/static/mock-data/pettypes.json'),
+				        $http.get(context + '/static/mock-data/contacttypes.json'),
 				]).then(function(data) {
-					console.log("Mocking /api/pets");
-					$httpBackend.whenGET(context + '/api/pets').respond(data[0].data);
+					console.log("Mocking /api/contacts");
+					$httpBackend.whenGET(context + '/api/contacts').respond(data[0].data);
 					console.log("Mocking /api/vets");
 					$httpBackend.whenGET(context + '/api/vets').respond(data[1].data);
 					console.log("Mocking /api/businessPartners");
 					$httpBackend.whenGET(context + '/api/businessPartners').respond(data[2].data);
 					console.log("Mocking /api/businessPartners/1");
 					$httpBackend.whenGET(context + '/api/businessPartners/1').respond(data[3].data);
-					console.log("Mocking /api/pets/types");
-					$httpBackend.whenGET(context + '/api/pets/types').respond(data[4].data);
+					console.log("Mocking /api/contacts/types");
+					$httpBackend.whenGET(context + '/api/contacts/types').respond(data[4].data);
 					
 					console.log("Setting up passthrough for other urls");
 					var passThroughRegex = new RegExp('/');

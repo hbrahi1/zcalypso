@@ -48,7 +48,7 @@ public class BusinessPartnerRestController {
     public @ResponseBody BusinessPartner create(@RequestBody BusinessPartner businessPartner) {
     	if (businessPartner.getId()!=null && businessPartner.getId()>0){
     		BusinessPartner existingBusinessPartner = calypsoService.findBusinessPartnerById(businessPartner.getId());
-    		BeanUtils.copyProperties(businessPartner, existingBusinessPartner, "pets", "id");
+    		BeanUtils.copyProperties(businessPartner, existingBusinessPartner, "contacts", "id");
     		calypsoService.saveBusinessPartner(existingBusinessPartner);
     	}
     	else {

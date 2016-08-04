@@ -24,19 +24,19 @@ import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
 /**
  * {@link ParameterizedRowMapper} implementation mapping data from a {@link ResultSet} to the corresponding properties
- * of the {@link JdbcPet} class.
+ * of the {@link JdbcContact} class.
  */
-class JdbcPetRowMapper implements ParameterizedRowMapper<JdbcPet> {
+class JdbcContactRowMapper implements ParameterizedRowMapper<JdbcContact> {
 
     @Override
-    public JdbcPet mapRow(ResultSet rs, int rownum) throws SQLException {
-        JdbcPet pet = new JdbcPet();
-        pet.setId(rs.getInt("id"));
-        pet.setName(rs.getString("name"));
+    public JdbcContact mapRow(ResultSet rs, int rownum) throws SQLException {
+        JdbcContact contact = new JdbcContact();
+        contact.setId(rs.getInt("id"));
+        contact.setName(rs.getString("name"));
         Date birthDate = rs.getDate("birth_date");
-        pet.setBirthDate(new DateTime(birthDate));
-        pet.setTypeId(rs.getInt("type_id"));
-        pet.setBusinessPartnerId(rs.getInt("businessPartner_id"));
-        return pet;
+        contact.setBirthDate(new DateTime(birthDate));
+        contact.setTypeId(rs.getInt("type_id"));
+        contact.setBusinessPartnerId(rs.getInt("businessPartner_id"));
+        return contact;
     }
 }

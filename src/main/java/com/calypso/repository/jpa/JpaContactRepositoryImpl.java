@@ -24,12 +24,12 @@ import javax.persistence.PersistenceContext;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.calypso.model.Pet;
-import com.calypso.model.PetType;
-import com.calypso.repository.PetRepository;
+import com.calypso.model.Contact;
+import com.calypso.model.ContactType;
+import com.calypso.repository.ContactRepository;
 
 /**
- * JPA implementation of the {@link PetRepository} interface.
+ * JPA implementation of the {@link ContactRepository} interface.
  *
  * @author Mike Keith
  * @author Rod Johnson
@@ -38,42 +38,42 @@ import com.calypso.repository.PetRepository;
  * @since 22.4.2006
  */
 @Repository
-public class JpaPetRepositoryImpl implements PetRepository {
+public class JpaContactRepositoryImpl implements ContactRepository {
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<PetType> findPetTypes() {
-        return this.em.createQuery("SELECT ptype FROM PetType ptype ORDER BY ptype.name").getResultList();
+    public List<ContactType> findContactTypes() {
+        return this.em.createQuery("SELECT ptype FROM ContactType ptype ORDER BY ptype.name").getResultList();
     }
 
     @Override
-    public Pet findById(int id) {
-        return this.em.find(Pet.class, id);
+    public Contact findById(int id) {
+        return this.em.find(Contact.class, id);
     }
 
     @Override
-    public void save(Pet pet) {
-    	if (pet.getId() == null) {
-    		this.em.persist(pet);     		
+    public void save(Contact contact) {
+    	if (contact.getId() == null) {
+    		this.em.persist(contact);     		
     	}
     	else {
-    		this.em.merge(pet);    
+    		this.em.merge(contact);    
     	}
     }
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Collection<Pet> findAll() throws DataAccessException {
-		return this.em.createQuery("SELECT pet FROM Pet pet").getResultList();
+	public Collection<Contact> findAll() throws DataAccessException {
+		return this.em.createQuery("SELECT contact FROM Contact contact").getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Collection<Pet> findByName(String query) throws DataAccessException {
-		return this.em.createQuery("SELECT pet FROM Pet pet WHERE UPPER(pet.name) like UPPER('%" + query + "%')").getResultList();
+	public Collection<Contact> findByName(String query) throws DataAccessException {
+		return this.em.createQuery("SELECT contact FROM Contact contact WHERE UPPER(contact.name) like UPPER('%" + query + "%')").getResultList();
 	}
 
 }

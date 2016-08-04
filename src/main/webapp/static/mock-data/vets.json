@@ -26,7 +26,7 @@
   "id" : 6,
   "firstName" : "Sharon",
   "lastName" : "Jenkins",
-  "description" : "MA VetMB MRCVS Sharon graduated from Oxford in 2006 and joined us in 2007. She joins international salsa competitions and consider herself an accomplished dancer.",
+  "description" : "MA VetMB MRCVS Sharon graduated from Oxford in 2006 and joined us in 2007. She joins international salsa comcontactitions and consider herself an accomplished dancer.",
   "specialties" : [ ],
   "nrOfSpecialties" : 0,
   "new" : false
@@ -46,7 +46,7 @@
   "id" : 4,
   "firstName" : "Rafael",
   "lastName" : "Ortega",
-  "description" : "MA VetMB MRCVS Rafael graduated from Cambridge in 2003 and joined PetClinit in October 2004. He has a particular interest in horseback archery and has competed in many international competitions.",
+  "description" : "MA VetMB MRCVS Rafael graduated from Cambridge in 2003 and joined ContactClinit in October 2004. He has a particular interest in horseback archery and has comcontacted in many international comcontactitions.",
   "specialties" : [ {
     "id" : 2,
     "name" : "surgery",
@@ -58,7 +58,7 @@
   "id" : 5,
   "firstName" : "Henry",
   "lastName" : "Stevens",
-  "description" : "MA VetMB MRCVS Henry graduated from Oxford in 2008 and joined us in 2010. He is also a competitive chess player and has participated in many international competitions.",
+  "description" : "MA VetMB MRCVS Henry graduated from Oxford in 2008 and joined us in 2010. He is also a comcontactitive chess player and has participated in many international comcontactitions.",
   "specialties" : [ {
     "id" : 1,
     "name" : "radiology",

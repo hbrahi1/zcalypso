@@ -40,15 +40,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * Simple business object representing a pet.
+ * Simple business object representing a contact.
  *
  * @author Ken Krebs
  * @author Juergen Hoeller
  * @author Sam Brannen
  */
 @Entity
-@Table(name = "pets")
-public class Pet extends NamedEntity {
+@Table(name = "contacts")
+public class Contact extends NamedEntity {
 
     @Column(name = "birth_date")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
@@ -57,14 +57,14 @@ public class Pet extends NamedEntity {
 
     @ManyToOne
     @JoinColumn(name = "type_id")
-    private PetType type;
+    private ContactType type;
 
     @ManyToOne
     @JoinColumn(name = "businessPartner_id")
     @JsonIgnore
     private BusinessPartner businessPartner;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contact", fetch = FetchType.EAGER)
     private Set<Visit> visits;
 
 
@@ -76,11 +76,11 @@ public class Pet extends NamedEntity {
         return this.birthDate;
     }
 
-    public void setType(PetType type) {
+    public void setType(ContactType type) {
         this.type = type;
     }
 
-    public PetType getType() {
+    public ContactType getType() {
         return this.type;
     }
 
@@ -111,7 +111,7 @@ public class Pet extends NamedEntity {
 
     public void addVisit(Visit visit) {
         getVisitsInternal().add(visit);
-        visit.setPet(this);
+        visit.setContact(this);
     }
 
 }

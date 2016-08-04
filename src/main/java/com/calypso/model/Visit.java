@@ -53,12 +53,12 @@ public class Visit extends BaseEntity {
     private String description;
 
     /**
-     * Holds value of property pet.
+     * Holds value of property contact.
      */
     @ManyToOne
-    @JoinColumn(name = "pet_id")
+    @JoinColumn(name = "contact_id")
     @JsonIgnore
-    private Pet pet;
+    private Contact contact;
 
 
     /**
@@ -106,21 +106,21 @@ public class Visit extends BaseEntity {
     }
 
     /**
-     * Getter for property pet.
+     * Getter for property contact.
      *
-     * @return Value of property pet.
+     * @return Value of property contact.
      */
-    public Pet getPet() {
-        return this.pet;
+    public Contact getContact() {
+        return this.contact;
     }
 
     /**
-     * Setter for property pet.
+     * Setter for property contact.
      *
-     * @param pet New value of property pet.
+     * @param contact New value of property contact.
      */
-    public void setPet(Pet pet) {
-        this.pet = pet;
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
 }

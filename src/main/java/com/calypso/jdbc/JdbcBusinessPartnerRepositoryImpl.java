@@ -33,8 +33,8 @@ import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.stereotype.Repository;
 
 import com.calypso.model.BusinessPartner;
-import com.calypso.model.Pet;
-import com.calypso.model.PetType;
+import com.calypso.model.Contact;
+import com.calypso.model.ContactType;
 import com.calypso.model.Visit;
 import com.calypso.repository.BusinessPartnerRepository;
 import com.calypso.repository.VisitRepository;
@@ -75,7 +75,7 @@ public class JdbcBusinessPartnerRepositoryImpl implements BusinessPartnerReposit
 
     /**
      * Loads {@link BusinessPartner BusinessPartners} from the data store by last name, returning all businessPartners whose last name <i>starts</i> with
-     * the given name; also loads the {@link Pet Pets} and {@link Visit Visits} for the corresponding businessPartners, if not
+     * the given name; also loads the {@link Contact Contacts} and {@link Visit Visits} for the corresponding businessPartners, if not
      * already loaded.
      */
     @Override
@@ -87,12 +87,12 @@ public class JdbcBusinessPartnerRepositoryImpl implements BusinessPartnerReposit
                 params,
                 ParameterizedBeanPropertyRowMapper.newInstance(BusinessPartner.class)
         );
-        loadBusinessPartnersPetsAndVisits(businessPartners);
+        loadBusinessPartnersContactsAndVisits(businessPartners);
         return businessPartners;
     }
 
     /**
-     * Loads the {@link BusinessPartner} with the supplied <code>id</code>; also loads the {@link Pet Pets} and {@link Visit Visits}
+     * Loads the {@link BusinessPartner} with the supplied <code>id</code>; also loads the {@link Contact Contacts} and {@link Visit Visits}
      * for the corresponding businessPartner, if not already loaded.
      */
     @Override
@@ -109,24 +109,24 @@ public class JdbcBusinessPartnerRepositoryImpl implements BusinessPartnerReposit
         } catch (EmptyResultDataAccessException ex) {
             throw new ObjectRetrievalFailureException(BusinessPartner.class, id);
         }
-        loadPetsAndVisits(businessPartner);
+        loadContactsAndVisits(businessPartner);
         return businessPartner;
     }
 
-    public void loadPetsAndVisits(final BusinessPartner businessPartner) {
+    public void loadContactsAndVisits(final BusinessPartner businessPartner) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("id", businessPartner.getId().intValue());
-        final List<JdbcPet> pets = this.namedParameterJdbcTemplate.query(
-                "SELECT id, name, birth_date, type_id, businessPartner_id FROM pets WHERE businessPartner_id=:id",
+        final List<JdbcContact> contacts = this.namedParameterJdbcTemplate.query(
+                "SELECT id, name, birth_date, type_id, businessPartner_id FROM contacts WHERE businessPartner_id=:id",
                 params,
-                new JdbcPetRowMapper()
+                new JdbcContactRowMapper()
         );
-        for (JdbcPet pet : pets) {
-            businessPartner.addPet(pet);
-            pet.setType(EntityUtils.getById(getPetTypes(), PetType.class, pet.getTypeId()));
-            List<Visit> visits = this.visitRepository.findByPetId(pet.getId());
+        for (JdbcContact contact : contacts) {
+            businessPartner.addContact(contact);
+            contact.setType(EntityUtils.getById(getContactTypes(), ContactType.class, contact.getTypeId()));
+            List<Visit> visits = this.visitRepository.findByContactId(contact.getId());
             for (Visit visit : visits) {
-                pet.addVisit(visit);
+                contact.addVisit(visit);
             }
         }
     }
@@ -145,21 +145,21 @@ public class JdbcBusinessPartnerRepositoryImpl implements BusinessPartnerReposit
         }
     }
 
-    public Collection<PetType> getPetTypes() throws DataAccessException {
+    public Collection<ContactType> getContactTypes() throws DataAccessException {
         return this.namedParameterJdbcTemplate.query(
                 "SELECT id, name FROM types ORDER BY name", new HashMap<String, Object>(),
-                ParameterizedBeanPropertyRowMapper.newInstance(PetType.class));
+                ParameterizedBeanPropertyRowMapper.newInstance(ContactType.class));
     }
 
     /**
-     * Loads the {@link Pet} and {@link Visit} data for the supplied {@link List} of {@link BusinessPartner BusinessPartners}.
+     * Loads the {@link Contact} and {@link Visit} data for the supplied {@link List} of {@link BusinessPartner BusinessPartners}.
      *
-     * @param businessPartners the list of businessPartners for whom the pet and visit data should be loaded
-     * @see #loadPetsAndVisits(BusinessPartner)
+     * @param businessPartners the list of businessPartners for whom the contact and visit data should be loaded
+     * @see #loadContactsAndVisits(BusinessPartner)
      */
-    private void loadBusinessPartnersPetsAndVisits(List<BusinessPartner> businessPartners) {
+    private void loadBusinessPartnersContactsAndVisits(List<BusinessPartner> businessPartners) {
         for (BusinessPartner businessPartner : businessPartners) {
-            loadPetsAndVisits(businessPartner);
+            loadContactsAndVisits(businessPartner);
         }
     }
 

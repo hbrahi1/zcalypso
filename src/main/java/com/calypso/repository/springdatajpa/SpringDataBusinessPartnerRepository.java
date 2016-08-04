@@ -33,10 +33,10 @@ import com.calypso.repository.BusinessPartnerRepository;
 public interface SpringDataBusinessPartnerRepository extends BusinessPartnerRepository, Repository<BusinessPartner, Integer> {
 		
 		@Override
-	    @Query("SELECT DISTINCT businessPartner FROM BusinessPartner businessPartner left join fetch businessPartner.pets WHERE businessPartner.lastName LIKE :lastName%")
+	    @Query("SELECT DISTINCT businessPartner FROM BusinessPartner businessPartner left join fetch businessPartner.contacts WHERE businessPartner.lastName LIKE :lastName%")
 	    public Collection<BusinessPartner> findByLastName(@Param("lastName") String lastName);
 		
 		@Override
-		@Query("SELECT businessPartner FROM BusinessPartner businessPartner left join fetch businessPartner.pets WHERE businessPartner.id =:id")
+		@Query("SELECT businessPartner FROM BusinessPartner businessPartner left join fetch businessPartner.contacts WHERE businessPartner.id =:id")
 	    public BusinessPartner findById(@Param("id") int id);
 }

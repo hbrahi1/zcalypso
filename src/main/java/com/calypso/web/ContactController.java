@@ -31,8 +31,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.calypso.model.BusinessPartner;
-import com.calypso.model.Pet;
-import com.calypso.model.PetType;
+import com.calypso.model.Contact;
+import com.calypso.model.ContactType;
 import com.calypso.service.CalypsoService;
 
 /**
@@ -41,20 +41,20 @@ import com.calypso.service.CalypsoService;
  * @author Arjen Poutsma
  */
 @Controller
-@SessionAttributes("pet")
-public class PetController {
+@SessionAttributes("contact")
+public class ContactController {
 
     private final CalypsoService calypsoService;
 
 
     @Autowired
-    public PetController(CalypsoService calypsoService) {
+    public ContactController(CalypsoService calypsoService) {
         this.calypsoService = calypsoService;
     }
 
     @ModelAttribute("types")
-    public Collection<PetType> populatePetTypes() {
-        return this.calypsoService.findPetTypes();
+    public Collection<ContactType> populateContactTypes() {
+        return this.calypsoService.findContactTypes();
     }
 
     @InitBinder
@@ -62,42 +62,42 @@ public class PetController {
         dataBinder.setDisallowedFields("id");
     }
 
-    @RequestMapping(value = "/businessPartners/{businessPartnerId}/pets/new", method = RequestMethod.GET)
+    @RequestMapping(value = "/businessPartners/{businessPartnerId}/contacts/new", method = RequestMethod.GET)
     public String initCreationForm(@PathVariable("businessPartnerId") int businessPartnerId, Map<String, Object> model) {
         BusinessPartner businessPartner = this.calypsoService.findBusinessPartnerById(businessPartnerId);
-        Pet pet = new Pet();
-        businessPartner.addPet(pet);
-        model.put("pet", pet);
-        return "pets/createOrUpdatePetForm";
+        Contact contact = new Contact();
+        businessPartner.addContact(contact);
+        model.put("contact", contact);
+        return "contacts/createOrUpdateContactForm";
     }
 
-    @RequestMapping(value = "/businessPartners/{businessPartnerId}/pets/new", method = RequestMethod.POST)
-    public String processCreationForm(@ModelAttribute("pet") Pet pet, BindingResult result, SessionStatus status) {
-        new PetValidator().validate(pet, result);
+    @RequestMapping(value = "/businessPartners/{businessPartnerId}/contacts/new", method = RequestMethod.POST)
+    public String processCreationForm(@ModelAttribute("contact") Contact contact, BindingResult result, SessionStatus status) {
+        new ContactValidator().validate(contact, result);
         if (result.hasErrors()) {
-            return "pets/createOrUpdatePetForm";
+            return "contacts/createOrUpdateContactForm";
         } else {
-            this.calypsoService.savePet(pet);
+            this.calypsoService.saveContact(contact);
             status.setComplete();
             return "redirect:/businessPartners/{businessPartnerId}";
         }
     }
 
-    @RequestMapping(value = "/businessPartners/*/pets/{petId}/edit", method = RequestMethod.GET)
-    public String initUpdateForm(@PathVariable("petId") int petId, Map<String, Object> model) {
-        Pet pet = this.calypsoService.findPetById(petId);
-        model.put("pet", pet);
-        return "pets/createOrUpdatePetForm";
+    @RequestMapping(value = "/businessPartners/*/contacts/{contactId}/edit", method = RequestMethod.GET)
+    public String initUpdateForm(@PathVariable("contactId") int contactId, Map<String, Object> model) {
+        Contact contact = this.calypsoService.findContactById(contactId);
+        model.put("contact", contact);
+        return "contacts/createOrUpdateContactForm";
     }
 
-    @RequestMapping(value = "/businessPartners/{businessPartnerId}/pets/{petId}/edit", method = {RequestMethod.PUT, RequestMethod.POST})
-    public String processUpdateForm(@ModelAttribute("pet") Pet pet, BindingResult result, SessionStatus status) {
+    @RequestMapping(value = "/businessPartners/{businessPartnerId}/contacts/{contactId}/edit", method = {RequestMethod.PUT, RequestMethod.POST})
+    public String processUpdateForm(@ModelAttribute("contact") Contact contact, BindingResult result, SessionStatus status) {
         // we're not using @Valid annotation here because it is easier to define such validation rule in Java
-        new PetValidator().validate(pet, result);
+        new ContactValidator().validate(contact, result);
         if (result.hasErrors()) {
-            return "pets/createOrUpdatePetForm";
+            return "contacts/createOrUpdateContactForm";
         } else {
-            this.calypsoService.savePet(pet);
+            this.calypsoService.saveContact(contact);
             status.setComplete();
             return "redirect:/businessPartners/{businessPartnerId}";
         }

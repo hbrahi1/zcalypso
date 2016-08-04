@@ -45,16 +45,16 @@ public class VisitRestController {
         this.calypsoService = calypsoService;
     }
 
-	// Spring MVC calls method loadPetWithVisit(...) before processNewVisitForm is called
-    @RequestMapping(value = "/pets/{petId}/visits", method = RequestMethod.POST)
-    public Visit createVisit(@PathVariable int businessPartnerId, @PathVariable int petId, @Valid Visit visit) {
+	// Spring MVC calls method loadContactWithVisit(...) before processNewVisitForm is called
+    @RequestMapping(value = "/contacts/{contactId}/visits", method = RequestMethod.POST)
+    public Visit createVisit(@PathVariable int businessPartnerId, @PathVariable int contactId, @Valid Visit visit) {
            this.calypsoService.saveVisit(visit);
            return visit;
     }
 
-    @RequestMapping(value = "/pets/{petId}/visits", method = RequestMethod.GET)
-    public List<Visit> showVisits(@PathVariable int petId) {
-        return this.calypsoService.findPetById(petId).getVisits();
+    @RequestMapping(value = "/contacts/{contactId}/visits", method = RequestMethod.GET)
+    public List<Visit> showVisits(@PathVariable int contactId) {
+        return this.calypsoService.findContactById(contactId).getVisits();
     }
 
 }

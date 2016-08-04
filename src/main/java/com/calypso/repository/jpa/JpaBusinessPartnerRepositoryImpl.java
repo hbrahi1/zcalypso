@@ -44,26 +44,26 @@ public class JpaBusinessPartnerRepositoryImpl implements BusinessPartnerReposito
 
 
     /**
-     * Important: in the current version of this method, we load BusinessPartners with all their Pets and Visits while 
-     * we do not need Visits at all and we only need one property from the Pet objects (the 'name' property).
+     * Important: in the current version of this method, we load BusinessPartners with all their Contacts and Visits while 
+     * we do not need Visits at all and we only need one property from the Contact objects (the 'name' property).
      * There are some ways to improve it such as:
      * - creating a Ligtweight class (example here: https://community.jboss.org/wiki/LightweightClass)
      * - Turning on lazy-loading and using {@link OpenSessionInViewFilter}
      */
     @SuppressWarnings("unchecked")
     public Collection<BusinessPartner> findByLastName(String lastName) {
-        // using 'join fetch' because a single query should load both businessPartners and pets
-        // using 'left join fetch' because it might happen that an businessPartner does not have pets yet
-        Query query = this.em.createQuery("SELECT DISTINCT businessPartner FROM BusinessPartner businessPartner left join fetch businessPartner.pets WHERE businessPartner.lastName LIKE :lastName");
+        // using 'join fetch' because a single query should load both businessPartners and contacts
+        // using 'left join fetch' because it might happen that an businessPartner does not have contacts yet
+        Query query = this.em.createQuery("SELECT DISTINCT businessPartner FROM BusinessPartner businessPartner left join fetch businessPartner.contacts WHERE businessPartner.lastName LIKE :lastName");
         query.setParameter("lastName", lastName + "%");
         return query.getResultList();
     }
 
     @Override
     public BusinessPartner findById(int id) {
-        // using 'join fetch' because a single query should load both businessPartners and pets
-        // using 'left join fetch' because it might happen that an businessPartner does not have pets yet
-        Query query = this.em.createQuery("SELECT businessPartner FROM BusinessPartner businessPartner left join fetch businessPartner.pets WHERE businessPartner.id =:id");
+        // using 'join fetch' because a single query should load both businessPartners and contacts
+        // using 'left join fetch' because it might happen that an businessPartner does not have contacts yet
+        Query query = this.em.createQuery("SELECT businessPartner FROM BusinessPartner businessPartner left join fetch businessPartner.contacts WHERE businessPartner.id =:id");
         query.setParameter("id", id);
         return (BusinessPartner) query.getSingleResult();
     }

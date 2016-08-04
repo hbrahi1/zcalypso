@@ -26,8 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.calypso.model.BusinessPartner;
-import com.calypso.model.Pet;
-import com.calypso.model.PetType;
+import com.calypso.model.Contact;
+import com.calypso.model.ContactType;
 import com.calypso.service.CalypsoService;
 
 /**
@@ -35,36 +35,36 @@ import com.calypso.service.CalypsoService;
  */
 @RestController
 @RequestMapping("/api")
-public class PetRestController {
+public class ContactRestController {
 
     private final CalypsoService calypsoService;
 
 
     @Autowired
-    public PetRestController(CalypsoService calypsoService) {
+    public ContactRestController(CalypsoService calypsoService) {
         this.calypsoService = calypsoService;
     }
 
-    @RequestMapping(value = "/pets/types", method = RequestMethod.GET)
-    public Collection<PetType> populatePetTypes() {
-        return this.calypsoService.findPetTypes();
+    @RequestMapping(value = "/contacts/types", method = RequestMethod.GET)
+    public Collection<ContactType> populateContactTypes() {
+        return this.calypsoService.findContactTypes();
     }
     
-    @RequestMapping(value = "/businessPartners/{businessPartnerId}/pets", method = RequestMethod.POST)
-    public Pet addPet(@PathVariable("businessPartnerId") int businessPartnerId, @RequestBody Pet pet) {
+    @RequestMapping(value = "/businessPartners/{businessPartnerId}/contacts", method = RequestMethod.POST)
+    public Contact addContact(@PathVariable("businessPartnerId") int businessPartnerId, @RequestBody Contact contact) {
         BusinessPartner businessPartner = this.calypsoService.findBusinessPartnerById(businessPartnerId);
-        businessPartner.addPet(pet);
-        this.calypsoService.savePet(pet);
-        return pet;
+        businessPartner.addContact(contact);
+        this.calypsoService.saveContact(contact);
+        return contact;
     }
 
-    @RequestMapping(value = "/pets", method = RequestMethod.GET)
-    public Collection<Pet> findAllPets() {
-    	return this.calypsoService.findPets();	
+    @RequestMapping(value = "/contacts", method = RequestMethod.GET)
+    public Collection<Contact> findAllContacts() {
+    	return this.calypsoService.findContacts();	
     }
 
-    @RequestMapping(value = "/pets/search", method = RequestMethod.GET)
-    public Collection<Pet> search(@RequestParam String q) {
-    	return this.calypsoService.findPetByName(q);
+    @RequestMapping(value = "/contacts/search", method = RequestMethod.GET)
+    public Collection<Contact> search(@RequestParam String q) {
+    	return this.calypsoService.findContactByName(q);
     }
 }

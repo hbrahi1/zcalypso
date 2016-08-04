@@ -31,22 +31,22 @@ app.config(['stateHelperProvider','$urlRouterProvider','$urlMatcherFactoryProvid
 		controller: "VeterinarianController",
 		data: { requireLogin : true }
 	}).state({
-		name: "pets",
-		url: "/pets",
-		templateUrl: "components/pets/pets.html",
-		controller: "PetController",
+		name: "contacts",
+		url: "/contacts",
+		templateUrl: "components/contacts/contacts.html",
+		controller: "ContactController",
 		data: { requireLogin : true }
 	}).state({
-		name: "owners",
-		url: "/owners",
-		templateUrl: "components/owners/owners.html",
-		controller: "OwnerController",
+		name: "businessPartners",
+		url: "/businessPartners",
+		templateUrl: "components/businessPartners/businessPartners.html",
+		controller: "BusinessPartnerController",
 		data: { requireLogin : true }
 	}).state({
-		name: "ownerDetails",
-		url: "/owners/:id",
-		templateUrl: "components/owners/owner_details.html",
-		controller: "OwnerDetailsController",
+		name: "businessPartnerDetails",
+		url: "/businessPartners/:id",
+		templateUrl: "components/businessPartners/businessPartner_details.html",
+		controller: "BusinessPartnerDetailsController",
 		data: {requireLogin : true}
 	});
 
@@ -56,21 +56,21 @@ app.config(['stateHelperProvider','$urlRouterProvider','$urlMatcherFactoryProvid
 app.controller('MainController', MainController);
 app.controller('DashboardController', DashboardController);
 app.controller('VeterinarianController', VeterinarianController);
-app.controller('PetController', PetController);
-app.controller('PetDetailsController', PetDetailsController);
-app.controller('OwnerController', OwnerController);
-app.controller('OwnerDetailsController', OwnerDetailsController);
-app.controller('AddOwnerController', AddOwnerController);
+app.controller('ContactController', ContactController);
+app.controller('ContactDetailsController', ContactDetailsController);
+app.controller('BusinessPartnerController', BusinessPartnerController);
+app.controller('BusinessPartnerDetailsController', BusinessPartnerDetailsController);
+app.controller('AddBusinessPartnerController', AddBusinessPartnerController);
 app.controller('VisitController', VisitController);
 app.controller('SearchController', SearchController);
 
 /** Services **/
-app.factory('Owner', Owner);
-app.factory('Pet', Pet);
-app.factory('OwnerPet', OwnerPet);
+app.factory('BusinessPartner', BusinessPartner);
+app.factory('Contact', Contact);
+app.factory('BusinessPartnerContact', BusinessPartnerContact);
 app.factory('Vet', Vet);
 app.factory('Visit', Visit);
-app.factory('PetType', PetType);
+app.factory('ContactType', ContactType);
 app.factory('MockService', MockService);
 
 /** Directives **/

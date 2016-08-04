@@ -6,7 +6,7 @@
   "address" : "110 W. Liberty St.",
   "city" : "Madison",
   "telephone" : "6085551023",
-  "pets" : [ {
+  "contacts" : [ {
     "id" : 1,
     "name" : "Leo",
     "birthDate" : "2010-09-07T00:00:00.000Z",
@@ -27,7 +27,7 @@
   "address" : "638 Cardinal Ave.",
   "city" : "Sun Prairie",
   "telephone" : "6085551749",
-  "pets" : [ {
+  "contacts" : [ {
     "id" : 2,
     "name" : "Basil",
     "birthDate" : "2012-08-06T00:00:00.000Z",
@@ -48,7 +48,7 @@
   "address" : "2693 Commerce St.",
   "city" : "McFarland",
   "telephone" : "6085558763",
-  "pets" : [ {
+  "contacts" : [ {
     "id" : 4,
     "name" : "Jewel",
     "birthDate" : "2010-03-07T00:00:00.000Z",
@@ -80,7 +80,7 @@
   "address" : "563 Friendly St.",
   "city" : "Windsor",
   "telephone" : "6085553198",
-  "pets" : [ {
+  "contacts" : [ {
     "id" : 5,
     "name" : "Iggy",
     "birthDate" : "2010-11-30T00:00:00.000Z",
@@ -95,13 +95,13 @@
   "new" : false
 }, {
   "id" : 5,
-  "firstName" : "Peter",
+  "firstName" : "Contacter",
   "lastName" : "McTavish",
   "description" : null,
   "address" : "2387 S. Fair Way",
   "city" : "Madison",
   "telephone" : "6085552765",
-  "pets" : [ {
+  "contacts" : [ {
     "id" : 6,
     "name" : "George",
     "birthDate" : "2010-01-20T00:00:00.000Z",
@@ -122,7 +122,7 @@
   "address" : "105 N. Lake St.",
   "city" : "Monona",
   "telephone" : "6085552654",
-  "pets" : [ {
+  "contacts" : [ {
     "id" : 8,
     "name" : "Max",
     "birthDate" : "2012-09-04T00:00:00.000Z",
@@ -174,7 +174,7 @@
   "address" : "1450 Oak Blvd.",
   "city" : "Monona",
   "telephone" : "6085555387",
-  "pets" : [ {
+  "contacts" : [ {
     "id" : 9,
     "name" : "Lucky",
     "birthDate" : "2011-08-06T00:00:00.000Z",
@@ -195,7 +195,7 @@
   "address" : "345 Maple St.",
   "city" : "Madison",
   "telephone" : "6085557683",
-  "pets" : [ {
+  "contacts" : [ {
     "id" : 10,
     "name" : "Mulligan",
     "birthDate" : "2007-02-24T00:00:00.000Z",
@@ -216,7 +216,7 @@
   "address" : "2749 Blackhawk Trail",
   "city" : "Madison",
   "telephone" : "6085559435",
-  "pets" : [ {
+  "contacts" : [ {
     "id" : 11,
     "name" : "Freddy",
     "birthDate" : "2010-03-09T00:00:00.000Z",
@@ -237,7 +237,7 @@
   "address" : "2335 Independence La.",
   "city" : "Waunakee",
   "telephone" : "6085555487",
-  "pets" : [ {
+  "contacts" : [ {
     "id" : 12,
     "name" : "Lucky",
     "birthDate" : "2010-06-24T00:00:00.000Z",

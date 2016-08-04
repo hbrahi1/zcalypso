@@ -24,12 +24,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.calypso.model.BusinessPartner;
-import com.calypso.model.Pet;
-import com.calypso.model.PetType;
+import com.calypso.model.Contact;
+import com.calypso.model.ContactType;
 import com.calypso.model.Vet;
 import com.calypso.model.Visit;
 import com.calypso.repository.BusinessPartnerRepository;
-import com.calypso.repository.PetRepository;
+import com.calypso.repository.ContactRepository;
 import com.calypso.repository.VetRepository;
 import com.calypso.repository.VisitRepository;
 
@@ -42,14 +42,14 @@ import com.calypso.repository.VisitRepository;
 @Service
 public class CalypsoServiceImpl implements CalypsoService {
 
-    private PetRepository petRepository;
+    private ContactRepository contactRepository;
     private VetRepository vetRepository;
     private BusinessPartnerRepository businessPartnerRepository;
     private VisitRepository visitRepository;
 
     @Autowired
-    public CalypsoServiceImpl(PetRepository petRepository, VetRepository vetRepository, BusinessPartnerRepository businessPartnerRepository, VisitRepository visitRepository) {
-        this.petRepository = petRepository;
+    public CalypsoServiceImpl(ContactRepository contactRepository, VetRepository vetRepository, BusinessPartnerRepository businessPartnerRepository, VisitRepository visitRepository) {
+        this.contactRepository = contactRepository;
         this.vetRepository = vetRepository;
         this.businessPartnerRepository = businessPartnerRepository;
         this.visitRepository = visitRepository;
@@ -57,8 +57,8 @@ public class CalypsoServiceImpl implements CalypsoService {
 
     @Override
     @Transactional(readOnly = true)
-    public Collection<PetType> findPetTypes() throws DataAccessException {
-        return petRepository.findPetTypes();
+    public Collection<ContactType> findContactTypes() throws DataAccessException {
+        return contactRepository.findContactTypes();
     }
 
     @Override
@@ -89,14 +89,14 @@ public class CalypsoServiceImpl implements CalypsoService {
 
     @Override
     @Transactional(readOnly = true)
-    public Pet findPetById(int id) throws DataAccessException {
-        return petRepository.findById(id);
+    public Contact findContactById(int id) throws DataAccessException {
+        return contactRepository.findById(id);
     }
 
     @Override
     @Transactional
-    public void savePet(Pet pet) throws DataAccessException {
-        petRepository.save(pet);
+    public void saveContact(Contact contact) throws DataAccessException {
+        contactRepository.save(contact);
     }
 
     @Override
@@ -108,13 +108,13 @@ public class CalypsoServiceImpl implements CalypsoService {
 
     @Override
     @Transactional(readOnly = true)
-    @Cacheable(value = "pets")
-    public Collection<Pet> findPets() throws DataAccessException {
-        return petRepository.findAll();
+    @Cacheable(value = "contacts")
+    public Collection<Contact> findContacts() throws DataAccessException {
+        return contactRepository.findAll();
     }
 
 	@Override
-	public Collection<Pet> findPetByName(String name) throws DataAccessException {
-		return petRepository.findByName(name);
+	public Collection<Contact> findContactByName(String name) throws DataAccessException {
+		return contactRepository.findByName(name);
 	}
 }

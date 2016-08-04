@@ -3,7 +3,7 @@ var SearchController = ['$scope','$http','$timeout','context', function($scope,$
 	$scope.searchText = '';
     $scope.$watch('searchText', function (val) {
     	if(val != '') {
-	        $http.get(context + '/api/pets/search', { params : { q : val } }).then(function(response) {
+	        $http.get(context + '/api/contacts/search', { params : { q : val } }).then(function(response) {
 	        	$scope.results = response.data;
 	        })
     	} else {

@@ -21,11 +21,11 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.calypso.model.BaseEntity;
-import com.calypso.model.Pet;
-import com.calypso.model.PetType;
+import com.calypso.model.Contact;
+import com.calypso.model.ContactType;
 
 /**
- * Repository class for <code>Pet</code> domain objects All method names are compliant with Spring Data naming
+ * Repository class for <code>Contact</code> domain objects All method names are compliant with Spring Data naming
  * conventions so this interface can easily be extended for Spring Data See here: http://static.springsource.org/spring-data/jpa/docs/current/reference/html/jpa.repositories.html#jpa.query-methods.query-creation
  *
  * @author Ken Krebs
@@ -33,45 +33,45 @@ import com.calypso.model.PetType;
  * @author Sam Brannen
  * @author Michael Isvy
  */
-public interface PetRepository {
+public interface ContactRepository {
 
     /**
-     * Retrieve all <code>PetType</code>s from the data store.
+     * Retrieve all <code>ContactType</code>s from the data store.
      *
-     * @return a <code>Collection</code> of <code>PetType</code>s
+     * @return a <code>Collection</code> of <code>ContactType</code>s
      */
-    List<PetType> findPetTypes() throws DataAccessException;
+    List<ContactType> findContactTypes() throws DataAccessException;
 
     /**
-     * Retrieve a <code>Pet</code> from the data store by id.
+     * Retrieve a <code>Contact</code> from the data store by id.
      *
      * @param id the id to search for
-     * @return the <code>Pet</code> if found
+     * @return the <code>Contact</code> if found
      * @throws org.springframework.dao.DataRetrievalFailureException
      *          if not found
      */
-    Pet findById(int id) throws DataAccessException;
+    Contact findById(int id) throws DataAccessException;
 
     /**
-     * Save a <code>Pet</code> to the data store, either inserting or updating it.
+     * Save a <code>Contact</code> to the data store, either inserting or updating it.
      *
-     * @param pet the <code>Pet</code> to save
+     * @param contact the <code>Contact</code> to save
      * @see BaseEntity#isNew
      */
-    void save(Pet pet) throws DataAccessException;
+    void save(Contact contact) throws DataAccessException;
     
     /**
-     * Get all pets
+     * Get all contacts
      * @return 
      *
      */
-    Collection<Pet> findAll() throws DataAccessException;
+    Collection<Contact> findAll() throws DataAccessException;
 
     /**
-     * Get all pets by name
+     * Get all contacts by name
      * @return 
      *
      */
-    Collection<Pet> findByName(String query) throws DataAccessException;
+    Collection<Contact> findByName(String query) throws DataAccessException;
 
 }

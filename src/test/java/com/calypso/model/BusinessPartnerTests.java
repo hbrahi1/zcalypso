@@ -22,7 +22,7 @@ import org.junit.Test;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.calypso.model.BusinessPartner;
-import com.calypso.model.Pet;
+import com.calypso.model.Contact;
 
 /**
  * JUnit test for the {@link BusinessPartner} class.
@@ -33,15 +33,15 @@ public class BusinessPartnerTests {
 
     @Test
     @Transactional
-    public void testHasPet() {
+    public void testHasContact() {
         BusinessPartner businessPartner = new BusinessPartner();
-        Pet fido = new Pet();
+        Contact fido = new Contact();
         fido.setName("Fido");
-        assertNull(businessPartner.getPet("Fido"));
-        assertNull(businessPartner.getPet("fido"));
-        businessPartner.addPet(fido);
-        assertEquals(fido, businessPartner.getPet("Fido"));
-        assertEquals(fido, businessPartner.getPet("fido"));
+        assertNull(businessPartner.getContact("Fido"));
+        assertNull(businessPartner.getContact("fido"));
+        businessPartner.addContact(fido);
+        assertEquals(fido, businessPartner.getContact("Fido"));
+        assertEquals(fido, businessPartner.getContact("fido"));
     }
 
 }

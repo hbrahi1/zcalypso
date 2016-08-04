@@ -1,0 +1,18 @@
+<section id="contacts" class="sections sections-narrow" data-ng-controller="ContactController">
+  <div class="container">
+    <a class="btn btn-primary pull-right" href="#" data-ui-sref="contacts">See All Contacts <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+    <h2 class="sub-header">Contacts</h2>
+    <div class="row thumbnail-wrapper">
+      <div class="col-md-3" ng-repeat="contact in contacts | limitTo : 4">
+        <div class="thumbnail">
+          <img data-ng-src="images/contacts/contact{{contact.id % 10 + 1}}.jpg" class="img-circle" alt="Generic placeholder image">
+          <div class="caption">
+            <h3 class="caption-heading" data-ng-bind="contact.name"></h3>
+            <p class="caption-meta">08 August 2012</p>
+            <p class="caption-meta"><span class="caption-label" data-ng-bind="contact.type.name"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
